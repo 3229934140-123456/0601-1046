@@ -1,0 +1,424 @@
+[
+  {
+    "shop_id": "SHOP-001",
+    "shop_name": "鑫达数码旗舰店",
+    "shop_type": "旗舰店",
+    "credit_score": 92,
+    "real_name_verified": true,
+    "qualifications": [
+      "企业营业执照",
+      "品牌授权书"
+    ],
+    "category": "数码配件",
+    "activity_id": "ACT-2026-0618",
+    "products": [
+      {
+        "sku": "SKU-001-1",
+        "name": "蓝牙耳机Pro",
+        "price": 199,
+        "original_price": 299,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-001-2",
+        "name": "充电宝20000mAh",
+        "price": 89,
+        "original_price": 129,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-001-3",
+        "name": "数据线三合一",
+        "price": 19.9,
+        "original_price": 39.9,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      }
+    ],
+    "remark": "✅ 资料完整，通过审核"
+  },
+  {
+    "shop_id": "SHOP-002",
+    "shop_name": "美丽容颜美妆店",
+    "shop_type": "专营店",
+    "credit_score": 85,
+    "real_name_verified": true,
+    "qualifications": [
+      "企业营业执照"
+    ],
+    "category": "美妆护肤",
+    "activity_id": "ACT-2026-0618",
+    "products": [
+      {
+        "sku": "SKU-002-1",
+        "name": "防晒霜SPF50",
+        "price": 128,
+        "original_price": 168,
+        "images": [
+          "主图"
+        ]
+      },
+      {
+        "sku": "SKU-002-2",
+        "name": "面膜套装",
+        "price": 59.9,
+        "original_price": 99,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      }
+    ],
+    "remark": "❌Q001 ❌P001 ❌IMG001 ⚠️R002"
+  },
+  {
+    "shop_id": "SHOP-003",
+    "shop_name": "健康之源保健品店",
+    "shop_type": "专营店",
+    "credit_score": 72,
+    "real_name_verified": false,
+    "qualifications": [],
+    "category": "保健食品",
+    "activity_id": "ACT-2026-0618",
+    "products": [
+      {
+        "sku": "SKU-003-1",
+        "name": "鱼油软胶囊",
+        "price": 199,
+        "original_price": 199,
+        "images": [
+          "主图"
+        ]
+      },
+      {
+        "sku": "SKU-003-2",
+        "name": "维生素C片",
+        "price": 5,
+        "original_price": 45,
+        "images": []
+      },
+      {
+        "sku": "SKU-003-3",
+        "name": "蛋白粉",
+        "price": 299,
+        "original_price": 399,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-003-4",
+        "name": "褪黑素",
+        "price": 15000,
+        "original_price": 18000,
+        "images": [
+          "主图"
+        ]
+      }
+    ],
+    "remark": "❌Q001 ❌Q002 ❌Q003 ⚠️PR003 ❌PR001 ❌PR002 ❌IMG001 ❌IMG002 ❌R001"
+  },
+  {
+    "shop_id": "SHOP-004",
+    "shop_name": "母婴优选商城",
+    "shop_type": "旗舰店",
+    "credit_score": 88,
+    "real_name_verified": true,
+    "qualifications": [
+      "企业营业执照",
+      "品牌授权书"
+    ],
+    "category": "婴幼儿奶粉",
+    "activity_id": "ACT-2026-0618",
+    "products": [
+      {
+        "sku": "SKU-004-1",
+        "name": "进口奶粉1段",
+        "price": 328,
+        "original_price": 398,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-004-2",
+        "name": "有机米粉",
+        "price": 68,
+        "original_price": 88,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-004-3",
+        "name": "婴儿辅食",
+        "price": 45,
+        "original_price": 59,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      }
+    ],
+    "remark": "❌R001"
+  },
+  {
+    "shop_id": "SHOP-005",
+    "shop_name": "鑫达数码旗舰店",
+    "shop_type": "旗舰店",
+    "credit_score": 92,
+    "real_name_verified": true,
+    "qualifications": [
+      "企业营业执照",
+      "品牌授权书"
+    ],
+    "category": "数码配件",
+    "activity_id": "ACT-2026-0618",
+    "products": [
+      {
+        "sku": "SKU-005-1",
+        "name": "蓝牙耳机Pro",
+        "price": 199,
+        "original_price": 299,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-005-2",
+        "name": "无线充电器",
+        "price": 79,
+        "original_price": 129,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-005-3",
+        "name": "手机壳",
+        "price": 15,
+        "original_price": 29,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      }
+    ],
+    "remark": "✅ 资料完整，通过审核"
+  },
+  {
+    "shop_id": "SHOP-006",
+    "shop_name": "家居生活馆",
+    "shop_type": "普通店",
+    "credit_score": 90,
+    "real_name_verified": true,
+    "qualifications": [
+      "企业营业执照",
+      "品牌授权书"
+    ],
+    "category": "家居日用",
+    "activity_id": "ACT-2026-0618",
+    "products": [
+      {
+        "sku": "SKU-006-1",
+        "name": "收纳盒套装",
+        "price": 39.9,
+        "original_price": 69.9,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-006-2",
+        "name": "厨房置物架",
+        "price": 89,
+        "original_price": 139,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-006-3",
+        "name": "浴室防滑垫",
+        "price": 29.9,
+        "original_price": 49.9,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      }
+    ],
+    "remark": "✅ 资料完整，通过审核"
+  },
+  {
+    "shop_id": "SHOP-007",
+    "shop_name": "运动达人专营店",
+    "shop_type": "专营店",
+    "credit_score": 78,
+    "real_name_verified": true,
+    "qualifications": [
+      "企业营业执照"
+    ],
+    "category": "运动户外",
+    "activity_id": "ACT-2026-0618",
+    "products": [
+      {
+        "sku": "SKU-007-1",
+        "name": "跑步鞋",
+        "price": 299,
+        "original_price": 499,
+        "images": [
+          "主图"
+        ]
+      }
+    ],
+    "remark": "❌Q001 ❌Q002 ❌P001 ❌IMG001"
+  },
+  {
+    "shop_id": "SHOP-008",
+    "shop_name": "金融理财超市",
+    "shop_type": "普通店",
+    "credit_score": 60,
+    "real_name_verified": false,
+    "qualifications": [],
+    "category": "金融理财",
+    "activity_id": "ACT-2026-0618",
+    "products": [
+      {
+        "sku": "SKU-008-1",
+        "name": "理财课程",
+        "price": 9999,
+        "original_price": 19999,
+        "images": [
+          "主图"
+        ]
+      },
+      {
+        "sku": "SKU-008-2",
+        "name": "投资指南",
+        "price": 1,
+        "original_price": 50,
+        "images": []
+      }
+    ],
+    "remark": "❌Q001 ❌Q002 ❌Q003 ❌P001 ❌PR001 ❌IMG001 ❌IMG002 ❌R001"
+  },
+  {
+    "shop_id": "SHOP-009",
+    "shop_name": "宠物乐园",
+    "shop_type": "专营店",
+    "credit_score": 82,
+    "real_name_verified": true,
+    "qualifications": [
+      "企业营业执照",
+      "品牌授权书"
+    ],
+    "category": "宠物药品",
+    "activity_id": "ACT-2026-0618",
+    "products": [
+      {
+        "sku": "SKU-009-1",
+        "name": "宠物驱虫药",
+        "price": 58,
+        "original_price": 78,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-009-2",
+        "name": "宠物营养膏",
+        "price": 35,
+        "original_price": 55,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-009-3",
+        "name": "猫砂盆",
+        "price": 128,
+        "original_price": 198,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      }
+    ],
+    "remark": "⚠️R002"
+  },
+  {
+    "shop_id": "SHOP-010",
+    "shop_name": "零食小站",
+    "shop_type": "普通店",
+    "credit_score": 91,
+    "real_name_verified": true,
+    "qualifications": [
+      "企业营业执照",
+      "品牌授权书",
+      "食品经营许可证"
+    ],
+    "category": "食品零食",
+    "activity_id": "ACT-2026-0618",
+    "products": [
+      {
+        "sku": "SKU-010-1",
+        "name": "坚果礼盒",
+        "price": 88,
+        "original_price": 128,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-010-2",
+        "name": "肉脯零食",
+        "price": 29.9,
+        "original_price": 49.9,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-010-3",
+        "name": "果干混合装",
+        "price": 35,
+        "original_price": 55,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      },
+      {
+        "sku": "SKU-010-4",
+        "name": "膨化食品",
+        "price": 15.9,
+        "original_price": 25.9,
+        "images": [
+          "主图",
+          "详情图"
+        ]
+      }
+    ],
+    "remark": "✅ 资料完整，通过审核"
+  }
+]

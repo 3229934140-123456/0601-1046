@@ -1,0 +1,32 @@
+[
+  {
+    "timestamp": "2026-06-10T18:46:01.352Z",
+    "level": "INFO",
+    "message": "开始生成完整报告",
+    "data": null
+  },
+  {
+    "timestamp": "2026-06-10T18:46:01.383Z",
+    "level": "INFO",
+    "message": "完整报告已保存",
+    "data": null
+  },
+  {
+    "timestamp": "2026-06-10T18:46:01.384Z",
+    "level": "INFO",
+    "message": "通过名单已保存: 5 家",
+    "data": null
+  },
+  {
+    "timestamp": "2026-06-10T18:46:01.386Z",
+    "level": "INFO",
+    "message": "失败原因已保存: 5 家",
+    "data": null
+  },
+  {
+    "timestamp": "2026-06-10T18:46:01.387Z",
+    "level": "INFO",
+    "message": "更新后商家数据已保存",
+    "data": null
+  }
+]

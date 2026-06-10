@@ -1,0 +1,619 @@
+{
+  "activity": {
+    "name": "618大促活动",
+    "id": "ACT-2026-0618",
+    "start_date": "2026-06-18",
+    "end_date": "2026-06-20"
+  },
+  "generated_at": "2026-06-10T18:46:01.382Z",
+  "summary": {
+    "total": 10,
+    "passed": 5,
+    "failed": 5,
+    "pass_rate": "50.0%"
+  },
+  "pass_list": [
+    {
+      "shop_id": "SHOP-001",
+      "shop_name": "鑫达数码旗舰店",
+      "category": "数码配件",
+      "shop_type": "旗舰店",
+      "credit_score": 92,
+      "product_count": 3
+    },
+    {
+      "shop_id": "SHOP-005",
+      "shop_name": "鑫达数码旗舰店",
+      "category": "数码配件",
+      "shop_type": "旗舰店",
+      "credit_score": 92,
+      "product_count": 3
+    },
+    {
+      "shop_id": "SHOP-006",
+      "shop_name": "家居生活馆",
+      "category": "家居日用",
+      "shop_type": "普通店",
+      "credit_score": 90,
+      "product_count": 3
+    },
+    {
+      "shop_id": "SHOP-009",
+      "shop_name": "宠物乐园",
+      "category": "宠物药品",
+      "shop_type": "专营店",
+      "credit_score": 82,
+      "product_count": 3
+    },
+    {
+      "shop_id": "SHOP-010",
+      "shop_name": "零食小站",
+      "category": "食品零食",
+      "shop_type": "普通店",
+      "credit_score": 91,
+      "product_count": 4
+    }
+  ],
+  "fail_list": [
+    {
+      "shop_id": "SHOP-002",
+      "shop_name": "美丽容颜美妆店",
+      "category": "美妆护肤",
+      "shop_type": "专营店",
+      "credit_score": 85,
+      "product_count": 2,
+      "issues": [
+        {
+          "check": "qualification",
+          "code": "Q001",
+          "level": "error",
+          "message": "缺少必要资质: 品牌授权书"
+        },
+        {
+          "check": "product_count",
+          "code": "P001",
+          "level": "error",
+          "message": "商品数量不足: 2 < 3"
+        },
+        {
+          "check": "image",
+          "code": "IMG001",
+          "level": "error",
+          "message": "商品 [防晒霜SPF50] 缺失图片: 详情图"
+        }
+      ],
+      "suggestions": [
+        "请尽快上传缺失的资质文件: 品牌授权书，否则无法通过审核",
+        "当前商品数 2，需至少上架 3 件商品参与活动",
+        "请补充缺失图片: 详情图，确保商品展示完整",
+        "美妆护肤 为关注类目，建议准备相关合规证明以备查验"
+      ]
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "category": "保健食品",
+      "shop_type": "专营店",
+      "credit_score": 72,
+      "product_count": 4,
+      "issues": [
+        {
+          "check": "qualification",
+          "code": "Q001",
+          "level": "error",
+          "message": "缺少必要资质: 企业营业执照、品牌授权书"
+        },
+        {
+          "check": "qualification",
+          "code": "Q002",
+          "level": "error",
+          "message": "信用分不达标: 72 < 80"
+        },
+        {
+          "check": "qualification",
+          "code": "Q003",
+          "level": "error",
+          "message": "未完成实名认证"
+        },
+        {
+          "check": "price",
+          "code": "PR003",
+          "level": "warn",
+          "message": "商品 [鱼油软胶囊] 折扣力度不足: 0.0% < 5%"
+        },
+        {
+          "check": "price",
+          "code": "PR001",
+          "level": "error",
+          "message": "商品 [维生素C片] 价格低于最低限价: 5 < 9.9"
+        },
+        {
+          "check": "price",
+          "code": "PR002",
+          "level": "error",
+          "message": "商品 [褪黑素] 价格高于最高限价: 15000 > 9999.99"
+        },
+        {
+          "check": "image",
+          "code": "IMG001",
+          "level": "error",
+          "message": "商品 [鱼油软胶囊] 缺失图片: 详情图"
+        },
+        {
+          "check": "image",
+          "code": "IMG001",
+          "level": "error",
+          "message": "商品 [维生素C片] 缺失图片: 主图、详情图"
+        },
+        {
+          "check": "image",
+          "code": "IMG002",
+          "level": "error",
+          "message": "商品 [维生素C片] 完全没有图片"
+        },
+        {
+          "check": "image",
+          "code": "IMG001",
+          "level": "error",
+          "message": "商品 [褪黑素] 缺失图片: 详情图"
+        },
+        {
+          "check": "risk",
+          "code": "R001",
+          "level": "error",
+          "message": "高风险类目: 保健食品，需要额外审核和资质证明"
+        }
+      ],
+      "suggestions": [
+        "请尽快上传缺失的资质文件: 企业营业执照、品牌授权书，否则无法通过审核",
+        "信用分当前 72，需提升至 80 以上，建议改善店铺经营数据",
+        "请尽快完成实名认证，这是活动报名的硬性要求",
+        "折扣力度仅 0.0%，低于要求的 5%，请加大优惠力度",
+        "商品价格 5 低于最低限价 9.9，请调整价格或确认是否填写正确",
+        "商品价格 15000 高于最高限价 9999.99，该商品可能不适合本活动",
+        "请补充缺失图片: 详情图，确保商品展示完整",
+        "请补充缺失图片: 主图、详情图，确保商品展示完整",
+        "商品没有任何图片，请上传至少主图和详情图",
+        "请补充缺失图片: 详情图，确保商品展示完整",
+        "保健食品 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核"
+      ]
+    },
+    {
+      "shop_id": "SHOP-004",
+      "shop_name": "母婴优选商城",
+      "category": "婴幼儿奶粉",
+      "shop_type": "旗舰店",
+      "credit_score": 88,
+      "product_count": 3,
+      "issues": [
+        {
+          "check": "risk",
+          "code": "R001",
+          "level": "error",
+          "message": "高风险类目: 婴幼儿奶粉，需要额外审核和资质证明"
+        }
+      ],
+      "suggestions": [
+        "婴幼儿奶粉 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核"
+      ]
+    },
+    {
+      "shop_id": "SHOP-007",
+      "shop_name": "运动达人专营店",
+      "category": "运动户外",
+      "shop_type": "专营店",
+      "credit_score": 78,
+      "product_count": 1,
+      "issues": [
+        {
+          "check": "qualification",
+          "code": "Q001",
+          "level": "error",
+          "message": "缺少必要资质: 品牌授权书"
+        },
+        {
+          "check": "qualification",
+          "code": "Q002",
+          "level": "error",
+          "message": "信用分不达标: 78 < 80"
+        },
+        {
+          "check": "product_count",
+          "code": "P001",
+          "level": "error",
+          "message": "商品数量不足: 1 < 3"
+        },
+        {
+          "check": "image",
+          "code": "IMG001",
+          "level": "error",
+          "message": "商品 [跑步鞋] 缺失图片: 详情图"
+        }
+      ],
+      "suggestions": [
+        "请尽快上传缺失的资质文件: 品牌授权书，否则无法通过审核",
+        "信用分当前 78，需提升至 80 以上，建议改善店铺经营数据",
+        "当前商品数 1，需至少上架 3 件商品参与活动",
+        "请补充缺失图片: 详情图，确保商品展示完整"
+      ]
+    },
+    {
+      "shop_id": "SHOP-008",
+      "shop_name": "金融理财超市",
+      "category": "金融理财",
+      "shop_type": "普通店",
+      "credit_score": 60,
+      "product_count": 2,
+      "issues": [
+        {
+          "check": "qualification",
+          "code": "Q001",
+          "level": "error",
+          "message": "缺少必要资质: 企业营业执照、品牌授权书"
+        },
+        {
+          "check": "qualification",
+          "code": "Q002",
+          "level": "error",
+          "message": "信用分不达标: 60 < 80"
+        },
+        {
+          "check": "qualification",
+          "code": "Q003",
+          "level": "error",
+          "message": "未完成实名认证"
+        },
+        {
+          "check": "product_count",
+          "code": "P001",
+          "level": "error",
+          "message": "商品数量不足: 2 < 3"
+        },
+        {
+          "check": "price",
+          "code": "PR001",
+          "level": "error",
+          "message": "商品 [投资指南] 价格低于最低限价: 1 < 9.9"
+        },
+        {
+          "check": "image",
+          "code": "IMG001",
+          "level": "error",
+          "message": "商品 [理财课程] 缺失图片: 详情图"
+        },
+        {
+          "check": "image",
+          "code": "IMG001",
+          "level": "error",
+          "message": "商品 [投资指南] 缺失图片: 主图、详情图"
+        },
+        {
+          "check": "image",
+          "code": "IMG002",
+          "level": "error",
+          "message": "商品 [投资指南] 完全没有图片"
+        },
+        {
+          "check": "risk",
+          "code": "R001",
+          "level": "error",
+          "message": "高风险类目: 金融理财，需要额外审核和资质证明"
+        }
+      ],
+      "suggestions": [
+        "请尽快上传缺失的资质文件: 企业营业执照、品牌授权书，否则无法通过审核",
+        "信用分当前 60，需提升至 80 以上，建议改善店铺经营数据",
+        "请尽快完成实名认证，这是活动报名的硬性要求",
+        "当前商品数 2，需至少上架 3 件商品参与活动",
+        "商品价格 1 低于最低限价 9.9，请调整价格或确认是否填写正确",
+        "请补充缺失图片: 详情图，确保商品展示完整",
+        "请补充缺失图片: 主图、详情图，确保商品展示完整",
+        "商品没有任何图片，请上传至少主图和详情图",
+        "金融理财 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核"
+      ]
+    }
+  ],
+  "all_suggestions": [
+    {
+      "shop_id": "SHOP-002",
+      "shop_name": "美丽容颜美妆店",
+      "check": "qualification",
+      "code": "Q001",
+      "level": "error",
+      "issue_message": "缺少必要资质: 品牌授权书",
+      "suggestion": "请尽快上传缺失的资质文件: 品牌授权书，否则无法通过审核",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-002",
+      "shop_name": "美丽容颜美妆店",
+      "check": "product_count",
+      "code": "P001",
+      "level": "error",
+      "issue_message": "商品数量不足: 2 < 3",
+      "suggestion": "当前商品数 2，需至少上架 3 件商品参与活动",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-002",
+      "shop_name": "美丽容颜美妆店",
+      "check": "image",
+      "code": "IMG001",
+      "level": "error",
+      "issue_message": "商品 [防晒霜SPF50] 缺失图片: 详情图",
+      "suggestion": "请补充缺失图片: 详情图，确保商品展示完整",
+      "auto_fixable": true
+    },
+    {
+      "shop_id": "SHOP-002",
+      "shop_name": "美丽容颜美妆店",
+      "check": "risk",
+      "code": "R002",
+      "level": "warn",
+      "issue_message": "关注类目: 美妆护肤，需要加强关注",
+      "suggestion": "美妆护肤 为关注类目，建议准备相关合规证明以备查验",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "check": "qualification",
+      "code": "Q001",
+      "level": "error",
+      "issue_message": "缺少必要资质: 企业营业执照、品牌授权书",
+      "suggestion": "请尽快上传缺失的资质文件: 企业营业执照、品牌授权书，否则无法通过审核",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "check": "qualification",
+      "code": "Q002",
+      "level": "error",
+      "issue_message": "信用分不达标: 72 < 80",
+      "suggestion": "信用分当前 72，需提升至 80 以上，建议改善店铺经营数据",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "check": "qualification",
+      "code": "Q003",
+      "level": "error",
+      "issue_message": "未完成实名认证",
+      "suggestion": "请尽快完成实名认证，这是活动报名的硬性要求",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "check": "price",
+      "code": "PR003",
+      "level": "warn",
+      "issue_message": "商品 [鱼油软胶囊] 折扣力度不足: 0.0% < 5%",
+      "suggestion": "折扣力度仅 0.0%，低于要求的 5%，请加大优惠力度",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "check": "price",
+      "code": "PR001",
+      "level": "error",
+      "issue_message": "商品 [维生素C片] 价格低于最低限价: 5 < 9.9",
+      "suggestion": "商品价格 5 低于最低限价 9.9，请调整价格或确认是否填写正确",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "check": "price",
+      "code": "PR002",
+      "level": "error",
+      "issue_message": "商品 [褪黑素] 价格高于最高限价: 15000 > 9999.99",
+      "suggestion": "商品价格 15000 高于最高限价 9999.99，该商品可能不适合本活动",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "check": "image",
+      "code": "IMG001",
+      "level": "error",
+      "issue_message": "商品 [鱼油软胶囊] 缺失图片: 详情图",
+      "suggestion": "请补充缺失图片: 详情图，确保商品展示完整",
+      "auto_fixable": true
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "check": "image",
+      "code": "IMG001",
+      "level": "error",
+      "issue_message": "商品 [维生素C片] 缺失图片: 主图、详情图",
+      "suggestion": "请补充缺失图片: 主图、详情图，确保商品展示完整",
+      "auto_fixable": true
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "check": "image",
+      "code": "IMG002",
+      "level": "error",
+      "issue_message": "商品 [维生素C片] 完全没有图片",
+      "suggestion": "商品没有任何图片，请上传至少主图和详情图",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "check": "image",
+      "code": "IMG001",
+      "level": "error",
+      "issue_message": "商品 [褪黑素] 缺失图片: 详情图",
+      "suggestion": "请补充缺失图片: 详情图，确保商品展示完整",
+      "auto_fixable": true
+    },
+    {
+      "shop_id": "SHOP-003",
+      "shop_name": "健康之源保健品店",
+      "check": "risk",
+      "code": "R001",
+      "level": "error",
+      "issue_message": "高风险类目: 保健食品，需要额外审核和资质证明",
+      "suggestion": "保健食品 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-004",
+      "shop_name": "母婴优选商城",
+      "check": "risk",
+      "code": "R001",
+      "level": "error",
+      "issue_message": "高风险类目: 婴幼儿奶粉，需要额外审核和资质证明",
+      "suggestion": "婴幼儿奶粉 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-007",
+      "shop_name": "运动达人专营店",
+      "check": "qualification",
+      "code": "Q001",
+      "level": "error",
+      "issue_message": "缺少必要资质: 品牌授权书",
+      "suggestion": "请尽快上传缺失的资质文件: 品牌授权书，否则无法通过审核",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-007",
+      "shop_name": "运动达人专营店",
+      "check": "qualification",
+      "code": "Q002",
+      "level": "error",
+      "issue_message": "信用分不达标: 78 < 80",
+      "suggestion": "信用分当前 78，需提升至 80 以上，建议改善店铺经营数据",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-007",
+      "shop_name": "运动达人专营店",
+      "check": "product_count",
+      "code": "P001",
+      "level": "error",
+      "issue_message": "商品数量不足: 1 < 3",
+      "suggestion": "当前商品数 1，需至少上架 3 件商品参与活动",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-007",
+      "shop_name": "运动达人专营店",
+      "check": "image",
+      "code": "IMG001",
+      "level": "error",
+      "issue_message": "商品 [跑步鞋] 缺失图片: 详情图",
+      "suggestion": "请补充缺失图片: 详情图，确保商品展示完整",
+      "auto_fixable": true
+    },
+    {
+      "shop_id": "SHOP-008",
+      "shop_name": "金融理财超市",
+      "check": "qualification",
+      "code": "Q001",
+      "level": "error",
+      "issue_message": "缺少必要资质: 企业营业执照、品牌授权书",
+      "suggestion": "请尽快上传缺失的资质文件: 企业营业执照、品牌授权书，否则无法通过审核",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-008",
+      "shop_name": "金融理财超市",
+      "check": "qualification",
+      "code": "Q002",
+      "level": "error",
+      "issue_message": "信用分不达标: 60 < 80",
+      "suggestion": "信用分当前 60，需提升至 80 以上，建议改善店铺经营数据",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-008",
+      "shop_name": "金融理财超市",
+      "check": "qualification",
+      "code": "Q003",
+      "level": "error",
+      "issue_message": "未完成实名认证",
+      "suggestion": "请尽快完成实名认证，这是活动报名的硬性要求",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-008",
+      "shop_name": "金融理财超市",
+      "check": "product_count",
+      "code": "P001",
+      "level": "error",
+      "issue_message": "商品数量不足: 2 < 3",
+      "suggestion": "当前商品数 2，需至少上架 3 件商品参与活动",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-008",
+      "shop_name": "金融理财超市",
+      "check": "price",
+      "code": "PR001",
+      "level": "error",
+      "issue_message": "商品 [投资指南] 价格低于最低限价: 1 < 9.9",
+      "suggestion": "商品价格 1 低于最低限价 9.9，请调整价格或确认是否填写正确",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-008",
+      "shop_name": "金融理财超市",
+      "check": "image",
+      "code": "IMG001",
+      "level": "error",
+      "issue_message": "商品 [理财课程] 缺失图片: 详情图",
+      "suggestion": "请补充缺失图片: 详情图，确保商品展示完整",
+      "auto_fixable": true
+    },
+    {
+      "shop_id": "SHOP-008",
+      "shop_name": "金融理财超市",
+      "check": "image",
+      "code": "IMG001",
+      "level": "error",
+      "issue_message": "商品 [投资指南] 缺失图片: 主图、详情图",
+      "suggestion": "请补充缺失图片: 主图、详情图，确保商品展示完整",
+      "auto_fixable": true
+    },
+    {
+      "shop_id": "SHOP-008",
+      "shop_name": "金融理财超市",
+      "check": "image",
+      "code": "IMG002",
+      "level": "error",
+      "issue_message": "商品 [投资指南] 完全没有图片",
+      "suggestion": "商品没有任何图片，请上传至少主图和详情图",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-008",
+      "shop_name": "金融理财超市",
+      "check": "risk",
+      "code": "R001",
+      "level": "error",
+      "issue_message": "高风险类目: 金融理财，需要额外审核和资质证明",
+      "suggestion": "金融理财 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-009",
+      "shop_name": "宠物乐园",
+      "check": "risk",
+      "code": "R002",
+      "level": "warn",
+      "issue_message": "关注类目: 宠物药品，需要加强关注",
+      "suggestion": "宠物药品 为关注类目，建议准备相关合规证明以备查验",
+      "auto_fixable": false
+    }
+  ],
+  "remark_filled_count": 6
+}

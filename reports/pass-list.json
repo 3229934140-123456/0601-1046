@@ -1,0 +1,52 @@
+{
+  "activity": {
+    "name": "618大促活动",
+    "id": "ACT-2026-0618",
+    "start_date": "2026-06-18",
+    "end_date": "2026-06-20"
+  },
+  "generated_at": "2026-06-10T18:46:01.382Z",
+  "count": 5,
+  "list": [
+    {
+      "shop_id": "SHOP-001",
+      "shop_name": "鑫达数码旗舰店",
+      "category": "数码配件",
+      "shop_type": "旗舰店",
+      "credit_score": 92,
+      "product_count": 3
+    },
+    {
+      "shop_id": "SHOP-005",
+      "shop_name": "鑫达数码旗舰店",
+      "category": "数码配件",
+      "shop_type": "旗舰店",
+      "credit_score": 92,
+      "product_count": 3
+    },
+    {
+      "shop_id": "SHOP-006",
+      "shop_name": "家居生活馆",
+      "category": "家居日用",
+      "shop_type": "普通店",
+      "credit_score": 90,
+      "product_count": 3
+    },
+    {
+      "shop_id": "SHOP-009",
+      "shop_name": "宠物乐园",
+      "category": "宠物药品",
+      "shop_type": "专营店",
+      "credit_score": 82,
+      "product_count": 3
+    },
+    {
+      "shop_id": "SHOP-010",
+      "shop_name": "零食小站",
+      "category": "食品零食",
+      "shop_type": "普通店",
+      "credit_score": 91,
+      "product_count": 4
+    }
+  ]
+}

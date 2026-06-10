@@ -1,0 +1,66 @@
+activity:
+  name: "618大促活动"
+  id: "ACT-2026-0618"
+  start_date: "2026-06-18"
+  end_date: "2026-06-20"
+
+rules:
+  qualification:
+    required_types:
+      - "企业营业执照"
+      - "品牌授权书"
+    min_credit_score: 80
+    require_real_name: true
+
+  product:
+    min_count: 3
+    max_count: 50
+
+  price:
+    min_price: 9.9
+    max_price: 9999.99
+    discount_min_percent: 5
+    max_price_ratio: 3.0
+
+  image:
+    required_images:
+      - "主图"
+      - "详情图"
+    min_width: 800
+    min_height: 800
+    allowed_formats:
+      - "jpg"
+      - "jpeg"
+      - "png"
+      - "webp"
+
+  risk:
+    high_risk_categories:
+      - "保健食品"
+      - "婴幼儿奶粉"
+      - "医疗器械"
+      - "处方药"
+      - "特种设备"
+      - "金融理财"
+      - "虚拟商品"
+    watch_categories:
+      - "美妆护肤"
+      - "营养补充"
+      - "宠物药品"
+
+  duplicate:
+    check_fields:
+      - "shop_id"
+      - "activity_id"
+    allow_same_shop_different_activity: true
+
+output:
+  report_dir: "./reports"
+  log_dir: "./logs"
+  export_format: "json"
+  encoding: "utf-8"
+
+logging:
+  level: "info"
+  max_files: 30
+  max_size_mb: 10
