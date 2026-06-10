@@ -3,7 +3,7 @@ const { initEnvironment, loadFilteredMerchants } = require("../utils/environment
 const { runAllChecks, STATUS_PASS, STATUS_FAIL, STATUS_REVIEW } = require("../core/workflow");
 const { generateSuggestions } = require("../core/suggestion");
 const { fillRemarks } = require("../core/remark");
-const { statusIcon, statusText, pad } = require("./check");
+const { statusIcon, statusText, categoryLabel, pad } = require("./check");
 
 function runFix(options) {
   const { config, reportDir, activityId, logger } = initEnvironment(options);
@@ -18,15 +18,13 @@ function runFix(options) {
   const { merchants: updatedMerchants, filledCount } = fillRemarks(filtered, pipeline.results);
   logger.info(`补全备注: ${filledCount} 个商家`);
 
+  const counts = { [STATUS_PASS]: 0, [STATUS_FAIL]: 0, [STATUS_REVIEW]: 0 };
+  for (const s of pipeline.recordStatuses) counts[s.status]++;
+
   const fixedData = {
     activity: { ...(config.activity || {}), id: activityId },
     timestamp: new Date().toISOString(),
-    audit_statistics: {
-      total: filtered.length,
-      pass: pipeline.shopStatuses.filter((s) => s.status === STATUS_PASS).length,
-      fail: pipeline.shopStatuses.filter((s) => s.status === STATUS_FAIL).length,
-      review: pipeline.shopStatuses.filter((s) => s.status === STATUS_REVIEW).length,
-    },
+    audit_statistics: { total: filtered.length, ...counts },
     suggestions,
     remark_filled: filledCount,
     merchants: updatedMerchants,
@@ -51,17 +49,18 @@ function printFixSummary(data) {
   console.log("\n╔══════════════════════════════════════════════════════════╗");
   console.log("║                  修正结果摘要                             ║");
   console.log("╠══════════════════════════════════════════════════════════╣");
-  console.log(`║  建议:${pad(data.suggestions.length, 4)}条  备注:${pad(data.remark_filled, 3)}家  通过:${pad(s.pass,3)}  未通:${pad(s.fail,3)}  复核:${pad(s.review,3)}    ║`);
+  console.log(`║  建议:${pad(data.suggestions.length, 4)}条  备注:${pad(data.remark_filled, 3)}家  通过:${pad(s[STATUS_PASS],3)}  未通:${pad(s[STATUS_FAIL],3)}  复核:${pad(s[STATUS_REVIEW],3)}    ║`);
   console.log("╚══════════════════════════════════════════════════════════╝\n");
 
-  const byShop = new Map();
+  const byRecord = new Map();
   for (const sug of data.suggestions) {
-    if (!byShop.has(sug.shop_id)) byShop.set(sug.shop_id, { name: sug.shop_name, items: [] });
-    byShop.get(sug.shop_id).items.push(sug);
+    const k = `${sug.shop_id}::${sug.shop_name}`;
+    if (!byRecord.has(k)) byRecord.set(k, { name: sug.shop_name, items: [] });
+    byRecord.get(k).items.push(sug);
   }
 
-  for (const [shopId, info] of byShop) {
-    console.log(`🔧 [${shopId}] ${info.name}`);
+  for (const [recordKey, info] of byRecord) {
+    console.log(`🔧 [${recordKey}]`);
     for (const item of info.items) {
       const tag = item.auto_fixable ? "🤖" : "👤";
       console.log(`  ${tag} [${item.code}] ${item.suggestion}`);

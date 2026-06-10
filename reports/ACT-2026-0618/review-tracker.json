@@ -3,11 +3,12 @@
     "id": "ACT-2026-0618",
     "name": "618大促活动"
   },
-  "generated_at": "2026-06-10T19:13:31.467Z",
-  "kind": "review",
+  "generated_at": "2026-06-10T19:13:31.468Z",
+  "kind": "review_tracker",
   "count": 2,
   "list": [
     {
+      "key": "ACT-2026-0618::SHOP-004::母婴优选商城",
       "shop_id": "SHOP-004",
       "shop_name": "母婴优选商城",
       "activity_id": "ACT-2026-0618",
@@ -15,16 +16,8 @@
       "shop_type": "旗舰店",
       "credit_score": 88,
       "product_count": 3,
-      "issues": [
-        {
-          "code": "R001",
-          "level": "error",
-          "message": "高风险类目: 婴幼儿奶粉，需要额外审核和资质证明"
-        }
-      ],
-      "collisions": [],
-      "suggestions": [
-        "婴幼儿奶粉 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核"
+      "review_categories": [
+        "high_risk"
       ],
       "review_reasons": [
         {
@@ -37,11 +30,21 @@
           "risk_level": "high"
         }
       ],
-      "review_categories": [
-        "high_risk"
-      ]
+      "collides_with": [],
+      "issues": [
+        {
+          "code": "R001",
+          "level": "error",
+          "message": "高风险类目: 婴幼儿奶粉，需要额外审核和资质证明"
+        }
+      ],
+      "review_status": "pending_claim",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "review_note": null
     },
     {
+      "key": "ACT-2026-0618::SHOP-009::宠物乐园",
       "shop_id": "SHOP-009",
       "shop_name": "宠物乐园",
       "activity_id": "ACT-2026-0618",
@@ -49,16 +52,8 @@
       "shop_type": "专营店",
       "credit_score": 82,
       "product_count": 3,
-      "issues": [
-        {
-          "code": "R002",
-          "level": "warn",
-          "message": "关注类目: 宠物药品，需要加强关注"
-        }
-      ],
-      "collisions": [],
-      "suggestions": [
-        "宠物药品 为关注类目，建议准备相关合规证明以备查验"
+      "review_categories": [
+        "watch"
       ],
       "review_reasons": [
         {
@@ -71,9 +66,18 @@
           "risk_level": "watch"
         }
       ],
-      "review_categories": [
-        "watch"
-      ]
+      "collides_with": [],
+      "issues": [
+        {
+          "code": "R002",
+          "level": "warn",
+          "message": "关注类目: 宠物药品，需要加强关注"
+        }
+      ],
+      "review_status": "pending_claim",
+      "reviewed_by": null,
+      "reviewed_at": null,
+      "review_note": null
     }
   ]
 }

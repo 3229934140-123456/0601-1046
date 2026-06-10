@@ -71,6 +71,7 @@ program
   .option("-d, --data <path>", "商家数据文件路径", "./data/sample-merchants.json")
   .option("-a, --activity-id <id>", "指定活动ID，覆盖配置中的默认活动ID")
   .option("--output-dir <dir>", "指定输出根目录，分活动目录产出报告和日志", "./")
+  .option("--resume <path>", "从上次导出的 review-tracker.json 恢复复核进度，保留人工处理状态")
   .action((opts) => {
     try {
       runReport(opts);

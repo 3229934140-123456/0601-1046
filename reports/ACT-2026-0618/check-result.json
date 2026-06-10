@@ -5,7 +5,7 @@
     "start_date": "2026-06-18",
     "end_date": "2026-06-20"
   },
-  "timestamp": "2026-06-10T19:02:50.047Z",
+  "timestamp": "2026-06-10T19:13:31.418Z",
   "check_statistics": {
     "total": 60,
     "passed": 42,
@@ -759,7 +759,7 @@
           "evidence": [
             "店铺名称完全一致: \"鑫达数码旗舰店\"",
             "活动ID完全一致: ACT-2026-0618",
-            "店铺ID不同: SHOP-001 vs SHOP-005，可能是同一主体重复开店或录入重复"
+            "店铺ID不同: SHOP-001 vs SHOP-005"
           ],
           "collide_with": {
             "shop_id": "SHOP-005",
@@ -770,7 +770,9 @@
             "shop_id": "SHOP-001",
             "shop_name": "鑫达数码旗舰店",
             "activity_id": "ACT-2026-0618"
-          }
+          },
+          "current_record_index": 0,
+          "collide_record_index": 4
         }
       ],
       "strong_match_count": 1,
@@ -779,14 +781,14 @@
         {
           "code": "D002",
           "level": "error",
-          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-005] 鑫达数码旗舰店 撞名，需要核实",
+          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与记录#4 [SHOP-005] 鑫达数码旗舰店 撞名",
           "detail": {
             "strategy": "shop_name_activity_id",
             "score": 0.95,
             "evidence": [
               "店铺名称完全一致: \"鑫达数码旗舰店\"",
               "活动ID完全一致: ACT-2026-0618",
-              "店铺ID不同: SHOP-001 vs SHOP-005，可能是同一主体重复开店或录入重复"
+              "店铺ID不同: SHOP-001 vs SHOP-005"
             ],
             "collide_with": {
               "shop_id": "SHOP-005",
@@ -797,7 +799,9 @@
               "shop_id": "SHOP-001",
               "shop_name": "鑫达数码旗舰店",
               "activity_id": "ACT-2026-0618"
-            }
+            },
+            "current_record_index": 0,
+            "collide_record_index": 4
           }
         }
       ]
@@ -844,7 +848,7 @@
           "evidence": [
             "店铺名称完全一致: \"鑫达数码旗舰店\"",
             "活动ID完全一致: ACT-2026-0618",
-            "店铺ID不同: SHOP-005 vs SHOP-001，可能是同一主体重复开店或录入重复"
+            "店铺ID不同: SHOP-005 vs SHOP-001"
           ],
           "collide_with": {
             "shop_id": "SHOP-001",
@@ -855,7 +859,9 @@
             "shop_id": "SHOP-005",
             "shop_name": "鑫达数码旗舰店",
             "activity_id": "ACT-2026-0618"
-          }
+          },
+          "current_record_index": 4,
+          "collide_record_index": 0
         }
       ],
       "strong_match_count": 1,
@@ -864,14 +870,14 @@
         {
           "code": "D002",
           "level": "error",
-          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-001] 鑫达数码旗舰店 撞名，需要核实",
+          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与记录#0 [SHOP-001] 鑫达数码旗舰店 撞名",
           "detail": {
             "strategy": "shop_name_activity_id",
             "score": 0.95,
             "evidence": [
               "店铺名称完全一致: \"鑫达数码旗舰店\"",
               "活动ID完全一致: ACT-2026-0618",
-              "店铺ID不同: SHOP-005 vs SHOP-001，可能是同一主体重复开店或录入重复"
+              "店铺ID不同: SHOP-005 vs SHOP-001"
             ],
             "collide_with": {
               "shop_id": "SHOP-001",
@@ -882,7 +888,9 @@
               "shop_id": "SHOP-005",
               "shop_name": "鑫达数码旗舰店",
               "activity_id": "ACT-2026-0618"
-            }
+            },
+            "current_record_index": 4,
+            "collide_record_index": 0
           }
         }
       ]
@@ -938,10 +946,12 @@
       "issues": []
     }
   ],
-  "shopStatuses": [
+  "recordStatuses": [
     {
+      "_idx": 0,
       "shop_id": "SHOP-001",
       "shop_name": "鑫达数码旗舰店",
+      "activity_id": "ACT-2026-0618",
       "category": "数码配件",
       "shop_type": "旗舰店",
       "credit_score": 92,
@@ -958,14 +968,14 @@
         {
           "code": "D002",
           "level": "error",
-          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-005] 鑫达数码旗舰店 撞名，需要核实",
+          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与记录#4 [SHOP-005] 鑫达数码旗舰店 撞名",
           "detail": {
             "strategy": "shop_name_activity_id",
             "score": 0.95,
             "evidence": [
               "店铺名称完全一致: \"鑫达数码旗舰店\"",
               "活动ID完全一致: ACT-2026-0618",
-              "店铺ID不同: SHOP-001 vs SHOP-005，可能是同一主体重复开店或录入重复"
+              "店铺ID不同: SHOP-001 vs SHOP-005"
             ],
             "collide_with": {
               "shop_id": "SHOP-005",
@@ -976,7 +986,9 @@
               "shop_id": "SHOP-001",
               "shop_name": "鑫达数码旗舰店",
               "activity_id": "ACT-2026-0618"
-            }
+            },
+            "current_record_index": 0,
+            "collide_record_index": 4
           }
         }
       ],
@@ -987,7 +999,7 @@
           "evidence": [
             "店铺名称完全一致: \"鑫达数码旗舰店\"",
             "活动ID完全一致: ACT-2026-0618",
-            "店铺ID不同: SHOP-001 vs SHOP-005，可能是同一主体重复开店或录入重复"
+            "店铺ID不同: SHOP-001 vs SHOP-005"
           ],
           "collide_with": {
             "shop_id": "SHOP-005",
@@ -998,20 +1010,23 @@
             "shop_id": "SHOP-001",
             "shop_name": "鑫达数码旗舰店",
             "activity_id": "ACT-2026-0618"
-          }
+          },
+          "current_record_index": 0,
+          "collide_record_index": 4
         }
       ],
-      "review_reasons": [],
+      "status": "fail",
       "fail_reasons": [
         {
           "check": "duplicate",
           "codes": [
             "D002"
           ],
-          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-005] 鑫达数码旗舰店 撞名，需要核实"
+          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与记录#4 [SHOP-005] 鑫达数码旗舰店 撞名"
         }
       ],
-      "status": "fail",
+      "review_reasons": [],
+      "review_categories": [],
       "collides_with": [
         {
           "code": "D002",
@@ -1025,14 +1040,16 @@
           "evidence": [
             "店铺名称完全一致: \"鑫达数码旗舰店\"",
             "活动ID完全一致: ACT-2026-0618",
-            "店铺ID不同: SHOP-001 vs SHOP-005，可能是同一主体重复开店或录入重复"
+            "店铺ID不同: SHOP-001 vs SHOP-005"
           ]
         }
       ]
     },
     {
+      "_idx": 1,
       "shop_id": "SHOP-002",
       "shop_name": "美丽容颜美妆店",
+      "activity_id": "ACT-2026-0618",
       "category": "美妆护肤",
       "shop_type": "专营店",
       "credit_score": 85,
@@ -1101,16 +1118,7 @@
         }
       ],
       "match_records": [],
-      "review_reasons": [
-        {
-          "check": "risk",
-          "codes": [
-            "R002"
-          ],
-          "message": "关注类目: 美妆护肤，需要加强关注",
-          "risk_level": "watch"
-        }
-      ],
+      "status": "fail",
       "fail_reasons": [
         {
           "check": "qualification",
@@ -1134,12 +1142,27 @@
           "message": "商品 [防晒霜SPF50] 缺失图片: 详情图"
         }
       ],
-      "status": "fail",
+      "review_reasons": [
+        {
+          "category": "watch",
+          "check": "risk",
+          "codes": [
+            "R002"
+          ],
+          "message": "关注类目: 美妆护肤，需要加强关注",
+          "risk_level": "watch"
+        }
+      ],
+      "review_categories": [
+        "watch"
+      ],
       "collides_with": []
     },
     {
+      "_idx": 2,
       "shop_id": "SHOP-003",
       "shop_name": "健康之源保健品店",
+      "activity_id": "ACT-2026-0618",
       "category": "保健食品",
       "shop_type": "专营店",
       "credit_score": 72,
@@ -1288,16 +1311,7 @@
         }
       ],
       "match_records": [],
-      "review_reasons": [
-        {
-          "check": "risk",
-          "codes": [
-            "R001"
-          ],
-          "message": "高风险类目: 保健食品，需要额外审核和资质证明",
-          "risk_level": "high"
-        }
-      ],
+      "status": "fail",
       "fail_reasons": [
         {
           "check": "qualification",
@@ -1326,12 +1340,27 @@
           "message": "商品 [鱼油软胶囊] 缺失图片: 详情图"
         }
       ],
-      "status": "fail",
+      "review_reasons": [
+        {
+          "category": "high_risk",
+          "check": "risk",
+          "codes": [
+            "R001"
+          ],
+          "message": "高风险类目: 保健食品，需要额外审核和资质证明",
+          "risk_level": "high"
+        }
+      ],
+      "review_categories": [
+        "high_risk"
+      ],
       "collides_with": []
     },
     {
+      "_idx": 3,
       "shop_id": "SHOP-004",
       "shop_name": "母婴优选商城",
+      "activity_id": "ACT-2026-0618",
       "category": "婴幼儿奶粉",
       "shop_type": "旗舰店",
       "credit_score": 88,
@@ -1356,8 +1385,11 @@
         }
       ],
       "match_records": [],
+      "status": "review",
+      "fail_reasons": [],
       "review_reasons": [
         {
+          "category": "high_risk",
           "check": "risk",
           "codes": [
             "R001"
@@ -1366,13 +1398,16 @@
           "risk_level": "high"
         }
       ],
-      "fail_reasons": [],
-      "status": "review",
+      "review_categories": [
+        "high_risk"
+      ],
       "collides_with": []
     },
     {
+      "_idx": 4,
       "shop_id": "SHOP-005",
       "shop_name": "鑫达数码旗舰店",
+      "activity_id": "ACT-2026-0618",
       "category": "数码配件",
       "shop_type": "旗舰店",
       "credit_score": 92,
@@ -1389,14 +1424,14 @@
         {
           "code": "D002",
           "level": "error",
-          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-001] 鑫达数码旗舰店 撞名，需要核实",
+          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与记录#0 [SHOP-001] 鑫达数码旗舰店 撞名",
           "detail": {
             "strategy": "shop_name_activity_id",
             "score": 0.95,
             "evidence": [
               "店铺名称完全一致: \"鑫达数码旗舰店\"",
               "活动ID完全一致: ACT-2026-0618",
-              "店铺ID不同: SHOP-005 vs SHOP-001，可能是同一主体重复开店或录入重复"
+              "店铺ID不同: SHOP-005 vs SHOP-001"
             ],
             "collide_with": {
               "shop_id": "SHOP-001",
@@ -1407,7 +1442,9 @@
               "shop_id": "SHOP-005",
               "shop_name": "鑫达数码旗舰店",
               "activity_id": "ACT-2026-0618"
-            }
+            },
+            "current_record_index": 4,
+            "collide_record_index": 0
           }
         }
       ],
@@ -1418,7 +1455,7 @@
           "evidence": [
             "店铺名称完全一致: \"鑫达数码旗舰店\"",
             "活动ID完全一致: ACT-2026-0618",
-            "店铺ID不同: SHOP-005 vs SHOP-001，可能是同一主体重复开店或录入重复"
+            "店铺ID不同: SHOP-005 vs SHOP-001"
           ],
           "collide_with": {
             "shop_id": "SHOP-001",
@@ -1429,20 +1466,23 @@
             "shop_id": "SHOP-005",
             "shop_name": "鑫达数码旗舰店",
             "activity_id": "ACT-2026-0618"
-          }
+          },
+          "current_record_index": 4,
+          "collide_record_index": 0
         }
       ],
-      "review_reasons": [],
+      "status": "fail",
       "fail_reasons": [
         {
           "check": "duplicate",
           "codes": [
             "D002"
           ],
-          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-001] 鑫达数码旗舰店 撞名，需要核实"
+          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与记录#0 [SHOP-001] 鑫达数码旗舰店 撞名"
         }
       ],
-      "status": "fail",
+      "review_reasons": [],
+      "review_categories": [],
       "collides_with": [
         {
           "code": "D002",
@@ -1456,14 +1496,16 @@
           "evidence": [
             "店铺名称完全一致: \"鑫达数码旗舰店\"",
             "活动ID完全一致: ACT-2026-0618",
-            "店铺ID不同: SHOP-005 vs SHOP-001，可能是同一主体重复开店或录入重复"
+            "店铺ID不同: SHOP-005 vs SHOP-001"
           ]
         }
       ]
     },
     {
+      "_idx": 5,
       "shop_id": "SHOP-006",
       "shop_name": "家居生活馆",
+      "activity_id": "ACT-2026-0618",
       "category": "家居日用",
       "shop_type": "普通店",
       "credit_score": 90,
@@ -1478,14 +1520,17 @@
       },
       "issues": [],
       "match_records": [],
-      "review_reasons": [],
-      "fail_reasons": [],
       "status": "pass",
+      "fail_reasons": [],
+      "review_reasons": [],
+      "review_categories": [],
       "collides_with": []
     },
     {
+      "_idx": 6,
       "shop_id": "SHOP-007",
       "shop_name": "运动达人专营店",
+      "activity_id": "ACT-2026-0618",
       "category": "运动户外",
       "shop_type": "专营店",
       "credit_score": 78,
@@ -1554,7 +1599,7 @@
         }
       ],
       "match_records": [],
-      "review_reasons": [],
+      "status": "fail",
       "fail_reasons": [
         {
           "check": "qualification",
@@ -1579,12 +1624,15 @@
           "message": "商品 [跑步鞋] 缺失图片: 详情图"
         }
       ],
-      "status": "fail",
+      "review_reasons": [],
+      "review_categories": [],
       "collides_with": []
     },
     {
+      "_idx": 7,
       "shop_id": "SHOP-008",
       "shop_name": "金融理财超市",
+      "activity_id": "ACT-2026-0618",
       "category": "金融理财",
       "shop_type": "普通店",
       "credit_score": 60,
@@ -1704,16 +1752,7 @@
         }
       ],
       "match_records": [],
-      "review_reasons": [
-        {
-          "check": "risk",
-          "codes": [
-            "R001"
-          ],
-          "message": "高风险类目: 金融理财，需要额外审核和资质证明",
-          "risk_level": "high"
-        }
-      ],
+      "status": "fail",
       "fail_reasons": [
         {
           "check": "qualification",
@@ -1747,12 +1786,27 @@
           "message": "商品 [理财课程] 缺失图片: 详情图"
         }
       ],
-      "status": "fail",
+      "review_reasons": [
+        {
+          "category": "high_risk",
+          "check": "risk",
+          "codes": [
+            "R001"
+          ],
+          "message": "高风险类目: 金融理财，需要额外审核和资质证明",
+          "risk_level": "high"
+        }
+      ],
+      "review_categories": [
+        "high_risk"
+      ],
       "collides_with": []
     },
     {
+      "_idx": 8,
       "shop_id": "SHOP-009",
       "shop_name": "宠物乐园",
+      "activity_id": "ACT-2026-0618",
       "category": "宠物药品",
       "shop_type": "专营店",
       "credit_score": 82,
@@ -1777,8 +1831,11 @@
         }
       ],
       "match_records": [],
+      "status": "review",
+      "fail_reasons": [],
       "review_reasons": [
         {
+          "category": "watch",
           "check": "risk",
           "codes": [
             "R002"
@@ -1787,13 +1844,16 @@
           "risk_level": "watch"
         }
       ],
-      "fail_reasons": [],
-      "status": "review",
+      "review_categories": [
+        "watch"
+      ],
       "collides_with": []
     },
     {
+      "_idx": 9,
       "shop_id": "SHOP-010",
       "shop_name": "零食小站",
+      "activity_id": "ACT-2026-0618",
       "category": "食品零食",
       "shop_type": "普通店",
       "credit_score": 91,
@@ -1808,9 +1868,10 @@
       },
       "issues": [],
       "match_records": [],
-      "review_reasons": [],
-      "fail_reasons": [],
       "status": "pass",
+      "fail_reasons": [],
+      "review_reasons": [],
+      "review_categories": [],
       "collides_with": []
     }
   ]

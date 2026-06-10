@@ -9,6 +9,10 @@ const STATUS_PASS = "pass";
 const STATUS_FAIL = "fail";
 const STATUS_REVIEW = "review";
 
+const REVIEW_CATEGORY_HIGH_RISK = "high_risk";
+const REVIEW_CATEGORY_WATCH = "watch";
+const REVIEW_CATEGORY_WEAK_DUPLICATE = "weak_duplicate";
+
 const FAIL_CHECKS = ["qualification", "product_count", "price", "image"];
 
 function runAllChecks(merchants, rules, logger) {
@@ -53,7 +57,7 @@ function runAllChecks(merchants, rules, logger) {
     }
   }
 
-  const shopStatuses = classifyAll(merchants, allResults, dupResult);
+  const recordStatuses = classifyByRecord(merchants, allResults);
 
   const checkStats = {
     total: allResults.length,
@@ -65,145 +69,132 @@ function runAllChecks(merchants, rules, logger) {
     results: allResults,
     duplicate: dupResult,
     checkStatistics: checkStats,
-    shopStatuses,
+    recordStatuses,
   };
 }
 
-function classifyAll(merchants, allResults, dupResult) {
-  const byShop = new Map();
+function classifyByRecord(merchants, allResults) {
+  const byRecord = new Map();
+
+  for (let idx = 0; idx < merchants.length; idx++) {
+    const m = merchants[idx];
+    byRecord.set(idx, {
+      _idx: idx,
+      shop_id: m.shop_id,
+      shop_name: m.shop_name,
+      activity_id: m.activity_id,
+      category: m.category,
+      shop_type: m.shop_type,
+      credit_score: m.credit_score,
+      product_count: m.products?.length || 0,
+      checks: {},
+      issues: [],
+      match_records: [],
+    });
+  }
 
   for (const r of allResults) {
-    if (!byShop.has(r.shop_id)) {
-      const m = merchants.find((mm) => mm.shop_id === r.shop_id);
-      byShop.set(r.shop_id, {
-        shop_id: r.shop_id,
-        shop_name: r.shop_name || m?.shop_name,
-        category: m?.category,
-        shop_type: m?.shop_type,
-        credit_score: m?.credit_score,
-        product_count: m?.products?.length || 0,
-        checks: {},
-        issues: [],
-        match_records: [],
-        review_reasons: [],
-        fail_reasons: [],
-      });
+    for (const [idx, rec] of byRecord) {
+      if (r.shop_id === rec.shop_id && r.shop_name === rec.shop_name) {
+        rec.checks[r.check] = r.passed;
+        if (r.issues && r.issues.length) rec.issues.push(...r.issues);
+        if (r.match_records && r.match_records.length) rec.match_records.push(...r.match_records);
+        break;
+      }
     }
-    const entry = byShop.get(r.shop_id);
-    entry.checks[r.check] = r.passed;
-    if (r.issues && r.issues.length) entry.issues.push(...r.issues);
-    if (r.match_records && r.match_records.length) entry.match_records.push(...r.match_records);
   }
 
   const statuses = [];
-  for (const [, shop] of byShop) {
-    const s = classifyOne(shop);
-    statuses.push({ ...shop, ...s });
+  for (const [, rec] of byRecord) {
+    const classified = classifyOneRecord(rec);
+    statuses.push({ ...rec, ...classified });
   }
 
   return statuses;
 }
 
-function classifyOne(shop) {
+function classifyOneRecord(rec) {
   let hasHardFail = false;
   let needsReview = false;
   const failReasons = [];
   const reviewReasons = [];
+  const reviewCategories = [];
   const collidesWith = [];
 
   for (const check of FAIL_CHECKS) {
-    const passed = shop.checks[check];
+    const passed = rec.checks[check];
     if (passed === false) {
       hasHardFail = true;
-      const relatedIssues = shop.issues.filter(
-        (i) =>
-          (i.check === check) ||
-          (FAIL_CHECKS.includes(check) && i.detail && relatedToCheck(i, check))
-      );
-      const issueCodes = relatedIssues.map((i) => i.code).filter(Boolean);
+      const related = rec.issues.filter((i) => i.code && codeBelongsTo(i.code, check));
       failReasons.push({
         check,
-        codes: [...new Set(issueCodes)],
-        message: relatedIssues[0]?.message || `[${check}] 检查未通过`,
+        codes: [...new Set(related.map((i) => i.code).filter(Boolean))],
+        message: related[0]?.message || `[${check}] 检查未通过`,
       });
     }
   }
 
-  const dupIssues = shop.issues.filter((i) => i.code && i.code.startsWith("D"));
+  const dupIssues = rec.issues.filter((i) => i.code && i.code.startsWith("D"));
   for (const issue of dupIssues) {
     const code = issue.code;
     if (code === "D001" || code === "D002") {
       hasHardFail = true;
-      failReasons.push({
-        check: "duplicate",
-        codes: [code],
-        message: issue.message,
-      });
-      if (issue.detail?.collide_with) {
-        collidesWith.push({
-          code,
-          score: issue.detail.score,
-          strategy: issue.detail.strategy,
-          collide_with: issue.detail.collide_with,
-          evidence: issue.detail.evidence || [],
-        });
-      }
+      failReasons.push({ check: "duplicate", codes: [code], message: issue.message });
     } else if (code === "D003" || code === "D004") {
       needsReview = true;
+      reviewCategories.push(REVIEW_CATEGORY_WEAK_DUPLICATE);
       reviewReasons.push({
+        category: REVIEW_CATEGORY_WEAK_DUPLICATE,
         check: "duplicate",
         codes: [code],
         message: issue.message,
       });
-      if (issue.detail?.collide_with) {
-        collidesWith.push({
-          code,
-          score: issue.detail.score,
-          strategy: issue.detail.strategy,
-          collide_with: issue.detail.collide_with,
-          evidence: issue.detail.evidence || [],
-        });
-      }
+    }
+    if (issue.detail?.collide_with) {
+      collidesWith.push({
+        code,
+        score: issue.detail.score,
+        strategy: issue.detail.strategy,
+        collide_with: issue.detail.collide_with,
+        evidence: issue.detail.evidence || [],
+      });
     }
   }
 
-  const riskIssues = shop.issues.filter((i) => i.code && i.code.startsWith("R"));
+  const riskIssues = rec.issues.filter((i) => i.code && i.code.startsWith("R"));
   for (const issue of riskIssues) {
     needsReview = true;
+    const riskLvl = issue.detail?.risk_level;
+    const cat = riskLvl === "high" ? REVIEW_CATEGORY_HIGH_RISK : REVIEW_CATEGORY_WATCH;
+    reviewCategories.push(cat);
     reviewReasons.push({
+      category: cat,
       check: "risk",
       codes: [issue.code],
       message: issue.message,
-      risk_level: issue.detail?.risk_level,
+      risk_level: riskLvl,
     });
   }
 
-  if (!hasHardFail && needsReview) {
-    return {
-      status: STATUS_REVIEW,
-      fail_reasons: failReasons,
-      review_reasons: reviewReasons,
-      collides_with: collidesWith,
-    };
-  }
+  let status;
   if (hasHardFail) {
-    return {
-      status: STATUS_FAIL,
-      fail_reasons: failReasons,
-      review_reasons: reviewReasons,
-      collides_with: collidesWith,
-    };
+    status = STATUS_FAIL;
+  } else if (needsReview) {
+    status = STATUS_REVIEW;
+  } else {
+    status = STATUS_PASS;
   }
+
   return {
-    status: STATUS_PASS,
-    fail_reasons: [],
-    review_reasons: [],
+    status,
+    fail_reasons: failReasons,
+    review_reasons: reviewReasons,
+    review_categories: [...new Set(reviewCategories)],
     collides_with: collidesWith,
   };
 }
 
-function relatedToCheck(issue, check) {
-  if (!issue.code) return false;
+function codeBelongsTo(code, check) {
   const map = {
     Q: "qualification",
     P: "product_count",
@@ -212,15 +203,18 @@ function relatedToCheck(issue, check) {
     D: "duplicate",
     R: "risk",
   };
-  const prefix = issue.code.replace(/\d.*/, "");
+  const prefix = code.replace(/\d.*/, "");
   return map[prefix] === check;
 }
 
 module.exports = {
   runAllChecks,
-  classifyAll,
-  classifyOne,
+  classifyByRecord,
+  classifyOneRecord,
   STATUS_PASS,
   STATUS_FAIL,
   STATUS_REVIEW,
+  REVIEW_CATEGORY_HIGH_RISK,
+  REVIEW_CATEGORY_WATCH,
+  REVIEW_CATEGORY_WEAK_DUPLICATE,
 };

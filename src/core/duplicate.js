@@ -46,14 +46,14 @@ function buildMatchRecord(m, m2, strategy, score, evidence) {
 }
 
 function findDuplicates(merchants, rules) {
-  const issues = [];
+  const allIssues = [];
   const dRules = rules.duplicate || {};
   const productSimilarityThreshold = dRules.product_similarity_threshold || 0.7;
   const allowDiff = dRules.allow_same_shop_different_activity !== false;
 
-  const shopMatches = new Map();
-  for (const m of merchants) {
-    shopMatches.set(m.shop_id, []);
+  const recordMatches = new Map();
+  for (let idx = 0; idx < merchants.length; idx++) {
+    recordMatches.set(idx, []);
   }
 
   for (let i = 0; i < merchants.length; i++) {
@@ -61,8 +61,7 @@ function findDuplicates(merchants, rules) {
       if (i === j) continue;
       const a = merchants[i];
       const b = merchants[j];
-
-      const matches = shopMatches.get(a.shop_id) || [];
+      const matches = recordMatches.get(i) || [];
 
       const sameActivity = a.activity_id === b.activity_id;
       if (allowDiff && !sameActivity) continue;
@@ -82,15 +81,15 @@ function findDuplicates(merchants, rules) {
         evidence = ["店铺ID完全一致", "活动ID完全一致"];
         level = "error";
         code = "D001";
-        message = `确定重复: 店铺ID [${a.shop_id}] 在同一活动 [${a.activity_id}] 重复报名，与 [${b.shop_id}] ${b.shop_name} 冲突`;
+        message = `确定重复: 店铺ID [${a.shop_id}] 在同一活动 [${a.activity_id}] 重复报名，与记录#${j} [${b.shop_id}] ${b.shop_name} 冲突`;
       } else if (a.shop_name === b.shop_name && sameActivity) {
         matched = true;
         strategy = "shop_name_activity_id";
         score = 0.95;
-        evidence = [`店铺名称完全一致: "${a.shop_name}"`, `活动ID完全一致: ${a.activity_id}`, `店铺ID不同: ${a.shop_id} vs ${b.shop_id}，可能是同一主体重复开店或录入重复`];
+        evidence = [`店铺名称完全一致: "${a.shop_name}"`, `活动ID完全一致: ${a.activity_id}`, `店铺ID不同: ${a.shop_id} vs ${b.shop_id}`];
         level = "error";
         code = "D002";
-        message = `高度疑似重复: 店铺名 [${a.shop_name}] 在同一活动重复报名，与 [${b.shop_id}] ${b.shop_name} 撞名，需要核实`;
+        message = `高度疑似重复: 店铺名 [${a.shop_name}] 在同一活动重复报名，与记录#${j} [${b.shop_id}] ${b.shop_name} 撞名`;
       } else {
         const prodSim = productSetSimilarity(a.products, b.products);
         if (prodSim >= productSimilarityThreshold) {
@@ -103,7 +102,7 @@ function findDuplicates(merchants, rules) {
           if (sameActivity) evidence.push(`同活动报名: ${a.activity_id}`);
           level = "warn";
           code = "D003";
-          message = `疑似重复: 商品高度相似(${ (prodSim * 100).toFixed(1)}%)，与 [${b.shop_id}] ${b.shop_name} 可能存在串货/盗图，建议人工复核`;
+          message = `疑似重复: 商品高度相似(${(prodSim * 100).toFixed(1)}%)，与记录#${j} [${b.shop_id}] ${b.shop_name} 可能串货`;
         } else if (a.shop_name === b.shop_name && !sameActivity) {
           matched = true;
           strategy = "shop_name_different_activity";
@@ -111,7 +110,7 @@ function findDuplicates(merchants, rules) {
           evidence = [`店铺名称相同: "${a.shop_name}"`, `活动不同: ${a.activity_id} vs ${b.activity_id}`];
           level = "warn";
           code = "D004";
-          message = `店铺名相同但活动不同: [${a.shop_name}] 同时报 ${a.activity_id} 和 ${b.activity_id}，请确认是否允许`;
+          message = `店铺名相同但活动不同: [${a.shop_name}] 同时报 ${a.activity_id} 和 ${b.activity_id}`;
         }
       }
 
@@ -122,46 +121,42 @@ function findDuplicates(merchants, rules) {
         if (existing) continue;
 
         const detail = buildMatchRecord(a, b, strategy, score, evidence);
+        detail.current_record_index = i;
+        detail.collide_record_index = j;
         matches.push(detail);
 
-        issues.push({
-          code,
-          level,
-          message,
-          detail,
-        });
+        allIssues.push({ code, level, message, detail });
       }
 
-      shopMatches.set(a.shop_id, matches);
+      recordMatches.set(i, matches);
     }
   }
 
-  const shopIds = [...shopMatches.keys()];
-  const results = shopIds.map((sid) => {
-    const matches = shopMatches.get(sid) || [];
-    const merchant = merchants.find((m) => m.shop_id === sid);
-    const shopIssues = issues.filter(
-      (i) => i.detail.current.shop_id === sid
+  const results = [];
+  for (let idx = 0; idx < merchants.length; idx++) {
+    const m = merchants[idx];
+    const matches = recordMatches.get(idx) || [];
+    const recordIssues = allIssues.filter(
+      (i) => i.detail.current.shop_id === m.shop_id && i.detail.current_record_index === idx
     );
 
     const strongMatches = matches.filter((m) => m.score >= 0.9);
     const weakMatches = matches.filter((m) => m.score < 0.9);
-    let passed = true;
-    if (strongMatches.length > 0) passed = false;
+    let passed = strongMatches.length === 0;
 
-    return {
-      shop_id: sid,
-      shop_name: merchant?.shop_name,
+    results.push({
+      shop_id: m.shop_id,
+      shop_name: m.shop_name,
       check: "duplicate",
       passed,
       match_records: matches,
       strong_match_count: strongMatches.length,
       weak_match_count: weakMatches.length,
-      issues: shopIssues,
-    };
-  });
+      issues: recordIssues,
+    });
+  }
 
-  return { results, allIssues: issues, shopMatches: Object.fromEntries(shopMatches) };
+  return { results, allIssues, recordMatches: Object.fromEntries(recordMatches) };
 }
 
 module.exports = { findDuplicates, productNameSimilarity, productSetSimilarity };

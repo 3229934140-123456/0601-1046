@@ -1,6 +1,6 @@
 [
   {
-    "timestamp": "2026-06-10T19:03:18.208Z",
+    "timestamp": "2026-06-10T19:13:31.436Z",
     "level": "INFO",
     "message": "初始化环境",
     "data": {
@@ -11,7 +11,7 @@
     }
   },
   {
-    "timestamp": "2026-06-10T19:03:18.210Z",
+    "timestamp": "2026-06-10T19:13:31.437Z",
     "level": "INFO",
     "message": "开始生成完整报告",
     "data": {
@@ -20,439 +20,451 @@
     }
   },
   {
-    "timestamp": "2026-06-10T19:03:18.210Z",
+    "timestamp": "2026-06-10T19:13:31.437Z",
     "level": "OK",
     "message": "[鑫达数码旗舰店] 资质校验 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.210Z",
+    "timestamp": "2026-06-10T19:13:31.438Z",
     "level": "OK",
     "message": "[鑫达数码旗舰店] 商品数量 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.211Z",
+    "timestamp": "2026-06-10T19:13:31.438Z",
     "level": "OK",
     "message": "[鑫达数码旗舰店] 价格区间 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.211Z",
+    "timestamp": "2026-06-10T19:13:31.439Z",
     "level": "OK",
     "message": "[鑫达数码旗舰店] 图片检查 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.212Z",
+    "timestamp": "2026-06-10T19:13:31.439Z",
     "level": "OK",
     "message": "[鑫达数码旗舰店] 风险标记 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.212Z",
+    "timestamp": "2026-06-10T19:13:31.439Z",
     "level": "WARN",
     "message": "[美丽容颜美妆店] 资质校验 - 缺少必要资质: 品牌授权书",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.212Z",
+    "timestamp": "2026-06-10T19:13:31.440Z",
     "level": "WARN",
     "message": "[美丽容颜美妆店] 商品数量 - 商品数量不足: 2 < 3",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.213Z",
+    "timestamp": "2026-06-10T19:13:31.440Z",
     "level": "OK",
     "message": "[美丽容颜美妆店] 价格区间 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.213Z",
+    "timestamp": "2026-06-10T19:13:31.441Z",
     "level": "WARN",
     "message": "[美丽容颜美妆店] 图片检查 - 商品 [防晒霜SPF50] 缺失图片: 详情图",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.213Z",
+    "timestamp": "2026-06-10T19:13:31.441Z",
     "level": "OK",
     "message": "[美丽容颜美妆店] 风险标记 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.214Z",
+    "timestamp": "2026-06-10T19:13:31.442Z",
     "level": "WARN",
     "message": "[健康之源保健品店] 资质校验 - 缺少必要资质: 企业营业执照、品牌授权书",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.214Z",
+    "timestamp": "2026-06-10T19:13:31.442Z",
     "level": "WARN",
     "message": "[健康之源保健品店] 资质校验 - 信用分不达标: 72 < 80",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.214Z",
+    "timestamp": "2026-06-10T19:13:31.442Z",
     "level": "WARN",
     "message": "[健康之源保健品店] 资质校验 - 未完成实名认证",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.214Z",
+    "timestamp": "2026-06-10T19:13:31.443Z",
     "level": "OK",
     "message": "[健康之源保健品店] 商品数量 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.215Z",
+    "timestamp": "2026-06-10T19:13:31.443Z",
     "level": "WARN",
     "message": "[健康之源保健品店] 价格区间 - 商品 [鱼油软胶囊] 折扣力度不足: 0.0% < 5%",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.215Z",
+    "timestamp": "2026-06-10T19:13:31.444Z",
     "level": "WARN",
     "message": "[健康之源保健品店] 价格区间 - 商品 [维生素C片] 价格低于最低限价: 5 < 9.9",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.215Z",
+    "timestamp": "2026-06-10T19:13:31.444Z",
     "level": "WARN",
     "message": "[健康之源保健品店] 价格区间 - 商品 [褪黑素] 价格高于最高限价: 15000 > 9999.99",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.216Z",
+    "timestamp": "2026-06-10T19:13:31.445Z",
     "level": "WARN",
     "message": "[健康之源保健品店] 图片检查 - 商品 [鱼油软胶囊] 缺失图片: 详情图",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.216Z",
+    "timestamp": "2026-06-10T19:13:31.445Z",
     "level": "WARN",
     "message": "[健康之源保健品店] 图片检查 - 商品 [维生素C片] 缺失图片: 主图、详情图",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.216Z",
+    "timestamp": "2026-06-10T19:13:31.445Z",
     "level": "WARN",
     "message": "[健康之源保健品店] 图片检查 - 商品 [维生素C片] 完全没有图片",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.217Z",
+    "timestamp": "2026-06-10T19:13:31.446Z",
     "level": "WARN",
     "message": "[健康之源保健品店] 图片检查 - 商品 [褪黑素] 缺失图片: 详情图",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.217Z",
+    "timestamp": "2026-06-10T19:13:31.446Z",
     "level": "WARN",
     "message": "[健康之源保健品店] 风险标记 - 高风险类目: 保健食品，需要额外审核和资质证明",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.217Z",
+    "timestamp": "2026-06-10T19:13:31.446Z",
     "level": "OK",
     "message": "[母婴优选商城] 资质校验 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.217Z",
+    "timestamp": "2026-06-10T19:13:31.446Z",
     "level": "OK",
     "message": "[母婴优选商城] 商品数量 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.218Z",
+    "timestamp": "2026-06-10T19:13:31.447Z",
     "level": "OK",
     "message": "[母婴优选商城] 价格区间 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.218Z",
+    "timestamp": "2026-06-10T19:13:31.447Z",
     "level": "OK",
     "message": "[母婴优选商城] 图片检查 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.218Z",
+    "timestamp": "2026-06-10T19:13:31.447Z",
     "level": "WARN",
     "message": "[母婴优选商城] 风险标记 - 高风险类目: 婴幼儿奶粉，需要额外审核和资质证明",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.219Z",
+    "timestamp": "2026-06-10T19:13:31.447Z",
     "level": "OK",
     "message": "[鑫达数码旗舰店] 资质校验 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.219Z",
+    "timestamp": "2026-06-10T19:13:31.447Z",
     "level": "OK",
     "message": "[鑫达数码旗舰店] 商品数量 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.219Z",
+    "timestamp": "2026-06-10T19:13:31.448Z",
     "level": "OK",
     "message": "[鑫达数码旗舰店] 价格区间 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.220Z",
+    "timestamp": "2026-06-10T19:13:31.449Z",
     "level": "OK",
     "message": "[鑫达数码旗舰店] 图片检查 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.220Z",
+    "timestamp": "2026-06-10T19:13:31.449Z",
     "level": "OK",
     "message": "[鑫达数码旗舰店] 风险标记 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.220Z",
+    "timestamp": "2026-06-10T19:13:31.449Z",
     "level": "OK",
     "message": "[家居生活馆] 资质校验 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.221Z",
+    "timestamp": "2026-06-10T19:13:31.450Z",
     "level": "OK",
     "message": "[家居生活馆] 商品数量 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.221Z",
+    "timestamp": "2026-06-10T19:13:31.450Z",
     "level": "OK",
     "message": "[家居生活馆] 价格区间 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.221Z",
+    "timestamp": "2026-06-10T19:13:31.450Z",
     "level": "OK",
     "message": "[家居生活馆] 图片检查 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.221Z",
+    "timestamp": "2026-06-10T19:13:31.450Z",
     "level": "OK",
     "message": "[家居生活馆] 风险标记 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.222Z",
+    "timestamp": "2026-06-10T19:13:31.451Z",
     "level": "WARN",
     "message": "[运动达人专营店] 资质校验 - 缺少必要资质: 品牌授权书",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.222Z",
+    "timestamp": "2026-06-10T19:13:31.451Z",
     "level": "WARN",
     "message": "[运动达人专营店] 资质校验 - 信用分不达标: 78 < 80",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.222Z",
+    "timestamp": "2026-06-10T19:13:31.452Z",
     "level": "WARN",
     "message": "[运动达人专营店] 商品数量 - 商品数量不足: 1 < 3",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.223Z",
+    "timestamp": "2026-06-10T19:13:31.452Z",
     "level": "OK",
     "message": "[运动达人专营店] 价格区间 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.223Z",
+    "timestamp": "2026-06-10T19:13:31.452Z",
     "level": "WARN",
     "message": "[运动达人专营店] 图片检查 - 商品 [跑步鞋] 缺失图片: 详情图",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.223Z",
+    "timestamp": "2026-06-10T19:13:31.453Z",
     "level": "OK",
     "message": "[运动达人专营店] 风险标记 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.223Z",
+    "timestamp": "2026-06-10T19:13:31.453Z",
     "level": "WARN",
     "message": "[金融理财超市] 资质校验 - 缺少必要资质: 企业营业执照、品牌授权书",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.224Z",
+    "timestamp": "2026-06-10T19:13:31.453Z",
     "level": "WARN",
     "message": "[金融理财超市] 资质校验 - 信用分不达标: 60 < 80",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.224Z",
+    "timestamp": "2026-06-10T19:13:31.454Z",
     "level": "WARN",
     "message": "[金融理财超市] 资质校验 - 未完成实名认证",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.224Z",
+    "timestamp": "2026-06-10T19:13:31.454Z",
     "level": "WARN",
     "message": "[金融理财超市] 商品数量 - 商品数量不足: 2 < 3",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.224Z",
+    "timestamp": "2026-06-10T19:13:31.454Z",
     "level": "WARN",
     "message": "[金融理财超市] 价格区间 - 商品 [投资指南] 价格低于最低限价: 1 < 9.9",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.225Z",
+    "timestamp": "2026-06-10T19:13:31.454Z",
     "level": "WARN",
     "message": "[金融理财超市] 图片检查 - 商品 [理财课程] 缺失图片: 详情图",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.225Z",
+    "timestamp": "2026-06-10T19:13:31.454Z",
     "level": "WARN",
     "message": "[金融理财超市] 图片检查 - 商品 [投资指南] 缺失图片: 主图、详情图",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.225Z",
+    "timestamp": "2026-06-10T19:13:31.455Z",
     "level": "WARN",
     "message": "[金融理财超市] 图片检查 - 商品 [投资指南] 完全没有图片",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.226Z",
+    "timestamp": "2026-06-10T19:13:31.455Z",
     "level": "WARN",
     "message": "[金融理财超市] 风险标记 - 高风险类目: 金融理财，需要额外审核和资质证明",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.226Z",
+    "timestamp": "2026-06-10T19:13:31.456Z",
     "level": "OK",
     "message": "[宠物乐园] 资质校验 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.226Z",
+    "timestamp": "2026-06-10T19:13:31.456Z",
     "level": "OK",
     "message": "[宠物乐园] 商品数量 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.227Z",
+    "timestamp": "2026-06-10T19:13:31.456Z",
     "level": "OK",
     "message": "[宠物乐园] 价格区间 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.227Z",
+    "timestamp": "2026-06-10T19:13:31.457Z",
     "level": "OK",
     "message": "[宠物乐园] 图片检查 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.227Z",
+    "timestamp": "2026-06-10T19:13:31.457Z",
     "level": "OK",
     "message": "[宠物乐园] 风险标记 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.228Z",
+    "timestamp": "2026-06-10T19:13:31.457Z",
     "level": "OK",
     "message": "[零食小站] 资质校验 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.228Z",
+    "timestamp": "2026-06-10T19:13:31.457Z",
     "level": "OK",
     "message": "[零食小站] 商品数量 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.228Z",
+    "timestamp": "2026-06-10T19:13:31.458Z",
     "level": "OK",
     "message": "[零食小站] 价格区间 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.228Z",
+    "timestamp": "2026-06-10T19:13:31.458Z",
     "level": "OK",
     "message": "[零食小站] 图片检查 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.229Z",
+    "timestamp": "2026-06-10T19:13:31.458Z",
     "level": "OK",
     "message": "[零食小站] 风险标记 通过",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.232Z",
+    "timestamp": "2026-06-10T19:13:31.460Z",
     "level": "WARN",
-    "message": "[鑫达数码旗舰店] 重复报名 - 高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-005] 鑫达数码旗舰店 撞名，需要核实",
+    "message": "[鑫达数码旗舰店] 重复报名 - 高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与记录#4 [SHOP-005] 鑫达数码旗舰店 撞名",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.232Z",
+    "timestamp": "2026-06-10T19:13:31.461Z",
     "level": "WARN",
-    "message": "[鑫达数码旗舰店] 重复报名 - 高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-001] 鑫达数码旗舰店 撞名，需要核实",
+    "message": "[鑫达数码旗舰店] 重复报名 - 高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与记录#0 [SHOP-001] 鑫达数码旗舰店 撞名",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.232Z",
+    "timestamp": "2026-06-10T19:13:31.461Z",
     "level": "ERROR",
     "message": "重复报名检测",
     "data": {
-      "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-005] 鑫达数码旗舰店 撞名，需要核实"
+      "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与记录#4 [SHOP-005] 鑫达数码旗舰店 撞名"
     }
   },
   {
-    "timestamp": "2026-06-10T19:03:18.233Z",
+    "timestamp": "2026-06-10T19:13:31.461Z",
     "level": "ERROR",
     "message": "重复报名检测",
     "data": {
-      "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-001] 鑫达数码旗舰店 撞名，需要核实"
+      "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与记录#0 [SHOP-001] 鑫达数码旗舰店 撞名"
     }
   },
   {
-    "timestamp": "2026-06-10T19:03:18.236Z",
+    "timestamp": "2026-06-10T19:13:31.464Z",
     "level": "INFO",
     "message": "完整报告已保存",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.237Z",
+    "timestamp": "2026-06-10T19:13:31.466Z",
     "level": "INFO",
-    "message": "通过名单已保存: 2 家",
+    "message": "通过名单已保存: 2 条",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.238Z",
+    "timestamp": "2026-06-10T19:13:31.467Z",
     "level": "INFO",
-    "message": "失败原因已保存: 6 家",
+    "message": "失败原因已保存: 6 条",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.239Z",
+    "timestamp": "2026-06-10T19:13:31.467Z",
     "level": "INFO",
-    "message": "待复核名单已保存: 2 家",
+    "message": "待复核名单已保存: 2 条",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.241Z",
+    "timestamp": "2026-06-10T19:13:31.468Z",
+    "level": "INFO",
+    "message": "复核追踪表已保存: 2 条 (待认领:2 已通过:0 已驳回:0)",
+    "data": null
+  },
+  {
+    "timestamp": "2026-06-10T19:13:31.470Z",
     "level": "INFO",
     "message": "更新后商家数据已保存",
     "data": null
   },
   {
-    "timestamp": "2026-06-10T19:03:18.242Z",
+    "timestamp": "2026-06-10T19:13:31.471Z",
     "level": "INFO",
     "message": "修改建议已保存: 32 条",
+    "data": null
+  },
+  {
+    "timestamp": "2026-06-10T19:13:31.472Z",
+    "level": "INFO",
+    "message": "CSV汇总表已保存: D:\\trae-bz\\TraeProjects\\1046\\reports\\ACT-2026-0618/audit-summary.csv",
     "data": null
   }
 ]
