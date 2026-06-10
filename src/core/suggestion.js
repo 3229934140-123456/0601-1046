@@ -10,7 +10,10 @@ const SUGGESTION_MAP = {
   PR004: (issue) => `活动价高于原价，请核实价格是否填写反了（活动价: ${issue.detail.price}, 原价: ${issue.detail.original_price}）`,
   IMG001: (issue) => `请补充缺失图片: ${issue.detail.missing.join("、")}，确保商品展示完整`,
   IMG002: (issue) => `商品没有任何图片，请上传至少主图和详情图`,
-  D001: (issue) => `与 [${issue.detail.previous.shop_name}] 重复报名同一活动，请确认是否为同一商家重复提交`,
+  D001: (issue) => `同一店铺ID [${issue.detail.current.shop_id}] 重复报名同一活动，与 [${issue.detail.collide_with.shop_id}] ${issue.detail.collide_with.shop_name} 冲突，请移除重复条目`,
+  D002: (issue) => `店铺名 [${issue.detail.current.shop_name}] 与 [${issue.detail.collide_with.shop_id}] ${issue.detail.collide_with.shop_name} 撞名，高度疑似重复报名，请人工核实是否为同一主体`,
+  D003: (issue) => `商品与 [${issue.detail.collide_with.shop_id}] ${issue.detail.collide_with.shop_name} 高度相似，可能存在串货/盗图，建议人工复核商品来源`,
+  D004: (issue) => `店铺 [${issue.detail.current.shop_name}] 同时报名多个活动，请确认是否允许跨活动同时报名`,
   R001: (issue) => `${issue.detail.category} 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核`,
   R002: (issue) => `${issue.detail.category} 为关注类目，建议准备相关合规证明以备查验`,
 };

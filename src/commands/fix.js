@@ -1,34 +1,36 @@
-const { loadConfig, loadMerchants, saveJson, ensureDir } = require("../utils/file");
-const { runCheck } = require("./check");
+const { saveJson } = require("../utils/file");
+const { initEnvironment, loadFilteredMerchants } = require("../utils/environment");
+const { runAllChecks, STATUS_PASS, STATUS_FAIL, STATUS_REVIEW } = require("../core/workflow");
 const { generateSuggestions } = require("../core/suggestion");
 const { fillRemarks } = require("../core/remark");
-const Logger = require("../utils/logger");
+const { statusIcon, statusText, pad } = require("./check");
 
 function runFix(options) {
-  const config = loadConfig(options.config);
-  const merchants = loadMerchants(options.data);
-  const logger = new Logger(config.output?.log_dir);
+  const { config, reportDir, activityId, logger } = initEnvironment(options);
+  const { filtered } = loadFilteredMerchants(options.data, activityId);
+  const rules = config.rules || {};
 
-  logger.info("开始修正流程");
-
-  const checkResult = runCheck({ ...options, output: null });
-  const suggestions = generateSuggestions(checkResult.results);
-
+  logger.info("开始修正流程", { activity_id: activityId });
+  const pipeline = runAllChecks(filtered, rules, logger);
+  const suggestions = generateSuggestions(pipeline.results);
   logger.info(`生成 ${suggestions.length} 条修改建议`);
 
-  const { merchants: updatedMerchants, filledCount } = fillRemarks(merchants, checkResult.results);
+  const { merchants: updatedMerchants, filledCount } = fillRemarks(filtered, pipeline.results);
   logger.info(`补全备注: ${filledCount} 个商家`);
 
   const fixedData = {
-    activity: config.activity,
+    activity: { ...(config.activity || {}), id: activityId },
     timestamp: new Date().toISOString(),
+    audit_statistics: {
+      total: filtered.length,
+      pass: pipeline.shopStatuses.filter((s) => s.status === STATUS_PASS).length,
+      fail: pipeline.shopStatuses.filter((s) => s.status === STATUS_FAIL).length,
+      review: pipeline.shopStatuses.filter((s) => s.status === STATUS_REVIEW).length,
+    },
     suggestions,
     remark_filled: filledCount,
     merchants: updatedMerchants,
   };
-
-  const reportDir = config.output?.report_dir || "./reports";
-  ensureDir(reportDir);
 
   const suggestionsPath = `${reportDir}/suggestions.json`;
   saveJson(suggestionsPath, suggestions);
@@ -41,21 +43,21 @@ function runFix(options) {
   }
 
   printFixSummary(fixedData);
-
   return fixedData;
 }
 
 function printFixSummary(data) {
-  console.log("\n╔══════════════════════════════════════════════════╗");
-  console.log("║           修正结果摘要                           ║");
-  console.log("╠══════════════════════════════════════════════════╣");
-  console.log(`║  修改建议: ${pad(data.suggestions.length, 3)} 条  补全备注: ${pad(data.remark_filled, 3)} 个商家       ║`);
-  console.log("╚══════════════════════════════════════════════════╝\n");
+  const s = data.audit_statistics;
+  console.log("\n╔══════════════════════════════════════════════════════════╗");
+  console.log("║                  修正结果摘要                             ║");
+  console.log("╠══════════════════════════════════════════════════════════╣");
+  console.log(`║  建议:${pad(data.suggestions.length, 4)}条  备注:${pad(data.remark_filled, 3)}家  通过:${pad(s.pass,3)}  未通:${pad(s.fail,3)}  复核:${pad(s.review,3)}    ║`);
+  console.log("╚══════════════════════════════════════════════════════════╝\n");
 
   const byShop = new Map();
-  for (const s of data.suggestions) {
-    if (!byShop.has(s.shop_id)) byShop.set(s.shop_id, { name: s.shop_name, items: [] });
-    byShop.get(s.shop_id).items.push(s);
+  for (const sug of data.suggestions) {
+    if (!byShop.has(sug.shop_id)) byShop.set(sug.shop_id, { name: sug.shop_name, items: [] });
+    byShop.get(sug.shop_id).items.push(sug);
   }
 
   for (const [shopId, info] of byShop) {
@@ -67,17 +69,14 @@ function printFixSummary(data) {
     console.log("");
   }
 
-  const remarkShops = data.merchants.filter((m) => m.remark && m.remark.includes("❌"));
+  const remarkShops = data.merchants.filter((m) => m.remark && /[❌⚠]/.test(m.remark));
   if (remarkShops.length > 0) {
     console.log("📝 备注补全结果:");
     for (const m of remarkShops) {
       console.log(`  [${m.shop_id}] ${m.shop_name} → ${m.remark}`);
     }
+    console.log("");
   }
-}
-
-function pad(n, len) {
-  return String(n).padStart(len, " ");
 }
 
 module.exports = { runFix };

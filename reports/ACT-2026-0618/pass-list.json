@@ -1,0 +1,29 @@
+{
+  "activity": {
+    "id": "ACT-2026-0618",
+    "name": "618大促活动"
+  },
+  "generated_at": "2026-06-10T19:03:18.236Z",
+  "kind": "pass",
+  "count": 2,
+  "list": [
+    {
+      "shop_id": "SHOP-006",
+      "shop_name": "家居生活馆",
+      "category": "家居日用",
+      "shop_type": "普通店",
+      "credit_score": 90,
+      "product_count": 3,
+      "verified_at": "2026-06-10T19:03:18.235Z"
+    },
+    {
+      "shop_id": "SHOP-010",
+      "shop_name": "零食小站",
+      "category": "食品零食",
+      "shop_type": "普通店",
+      "credit_score": 91,
+      "product_count": 4,
+      "verified_at": "2026-06-10T19:03:18.235Z"
+    }
+  ]
+}

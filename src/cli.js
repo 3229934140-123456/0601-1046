@@ -20,6 +20,8 @@ program
   .option("-c, --config <path>", "配置文件路径", "./config.yaml")
   .option("-d, --data <path>", "商家数据文件路径", "./data/sample-merchants.json")
   .option("-o, --output <path>", "检查结果输出路径")
+  .option("-a, --activity-id <id>", "指定活动ID，覆盖配置中的默认活动ID")
+  .option("--output-dir <dir>", "指定输出根目录，分活动目录产出报告和日志", "./")
   .action((opts) => {
     try {
       runCheck(opts);
@@ -35,6 +37,8 @@ program
   .option("-c, --config <path>", "配置文件路径", "./config.yaml")
   .option("-d, --data <path>", "商家数据文件路径", "./data/sample-merchants.json")
   .option("--save-data", "保存修正后的商家数据", false)
+  .option("-a, --activity-id <id>", "指定活动ID，覆盖配置中的默认活动ID")
+  .option("--output-dir <dir>", "指定输出根目录，分活动目录产出报告和日志", "./")
   .action((opts) => {
     try {
       runFix(opts);
@@ -49,6 +53,8 @@ program
   .description("预览检查结果，不写入文件")
   .option("-c, --config <path>", "配置文件路径", "./config.yaml")
   .option("-d, --data <path>", "商家数据文件路径", "./data/sample-merchants.json")
+  .option("-a, --activity-id <id>", "指定活动ID，覆盖配置中的默认活动ID")
+  .option("--output-dir <dir>", "指定输出根目录，分活动目录产出报告和日志", "./")
   .action((opts) => {
     try {
       runPreview(opts);
@@ -63,6 +69,8 @@ program
   .description("生成完整审核报告，导出通过名单和失败原因")
   .option("-c, --config <path>", "配置文件路径", "./config.yaml")
   .option("-d, --data <path>", "商家数据文件路径", "./data/sample-merchants.json")
+  .option("-a, --activity-id <id>", "指定活动ID，覆盖配置中的默认活动ID")
+  .option("--output-dir <dir>", "指定输出根目录，分活动目录产出报告和日志", "./")
   .action((opts) => {
     try {
       runReport(opts);

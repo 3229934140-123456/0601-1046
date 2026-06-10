@@ -5,45 +5,23 @@
     "start_date": "2026-06-18",
     "end_date": "2026-06-20"
   },
-  "generated_at": "2026-06-10T18:46:01.382Z",
+  "generated_at": "2026-06-10T19:03:18.235Z",
   "summary": {
     "total": 10,
-    "passed": 5,
-    "failed": 5,
-    "pass_rate": "50.0%"
+    "passed": 2,
+    "failed": 6,
+    "review": 2,
+    "pass_rate": "20.0%"
   },
   "pass_list": [
-    {
-      "shop_id": "SHOP-001",
-      "shop_name": "鑫达数码旗舰店",
-      "category": "数码配件",
-      "shop_type": "旗舰店",
-      "credit_score": 92,
-      "product_count": 3
-    },
-    {
-      "shop_id": "SHOP-005",
-      "shop_name": "鑫达数码旗舰店",
-      "category": "数码配件",
-      "shop_type": "旗舰店",
-      "credit_score": 92,
-      "product_count": 3
-    },
     {
       "shop_id": "SHOP-006",
       "shop_name": "家居生活馆",
       "category": "家居日用",
       "shop_type": "普通店",
       "credit_score": 90,
-      "product_count": 3
-    },
-    {
-      "shop_id": "SHOP-009",
-      "shop_name": "宠物乐园",
-      "category": "宠物药品",
-      "shop_type": "专营店",
-      "credit_score": 82,
-      "product_count": 3
+      "product_count": 3,
+      "verified_at": "2026-06-10T19:03:18.235Z"
     },
     {
       "shop_id": "SHOP-010",
@@ -51,10 +29,74 @@
       "category": "食品零食",
       "shop_type": "普通店",
       "credit_score": 91,
-      "product_count": 4
+      "product_count": 4,
+      "verified_at": "2026-06-10T19:03:18.235Z"
     }
   ],
   "fail_list": [
+    {
+      "shop_id": "SHOP-001",
+      "shop_name": "鑫达数码旗舰店",
+      "category": "数码配件",
+      "shop_type": "旗舰店",
+      "credit_score": 92,
+      "product_count": 3,
+      "issues": [
+        {
+          "code": "D002",
+          "level": "error",
+          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-005] 鑫达数码旗舰店 撞名，需要核实",
+          "detail": {
+            "strategy": "shop_name_activity_id",
+            "score": 0.95,
+            "evidence": [
+              "店铺名称完全一致: \"鑫达数码旗舰店\"",
+              "活动ID完全一致: ACT-2026-0618",
+              "店铺ID不同: SHOP-001 vs SHOP-005，可能是同一主体重复开店或录入重复"
+            ],
+            "collide_with": {
+              "shop_id": "SHOP-005",
+              "shop_name": "鑫达数码旗舰店",
+              "activity_id": "ACT-2026-0618"
+            },
+            "current": {
+              "shop_id": "SHOP-001",
+              "shop_name": "鑫达数码旗舰店",
+              "activity_id": "ACT-2026-0618"
+            }
+          }
+        }
+      ],
+      "collisions": [
+        {
+          "code": "D002",
+          "strategy": "shop_name_activity_id",
+          "score": 0.95,
+          "collide_with": {
+            "shop_id": "SHOP-005",
+            "shop_name": "鑫达数码旗舰店",
+            "activity_id": "ACT-2026-0618"
+          },
+          "evidence": [
+            "店铺名称完全一致: \"鑫达数码旗舰店\"",
+            "活动ID完全一致: ACT-2026-0618",
+            "店铺ID不同: SHOP-001 vs SHOP-005，可能是同一主体重复开店或录入重复"
+          ]
+        }
+      ],
+      "suggestions": [
+        "店铺名 [鑫达数码旗舰店] 与 [SHOP-005] 鑫达数码旗舰店 撞名，高度疑似重复报名，请人工核实是否为同一主体"
+      ],
+      "fail_reasons": [
+        {
+          "check": "duplicate",
+          "codes": [
+            "D002"
+          ],
+          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-005] 鑫达数码旗舰店 撞名，需要核实"
+        }
+      ]
+    },
     {
       "shop_id": "SHOP-002",
       "shop_name": "美丽容颜美妆店",
@@ -64,29 +106,88 @@
       "product_count": 2,
       "issues": [
         {
-          "check": "qualification",
           "code": "Q001",
           "level": "error",
-          "message": "缺少必要资质: 品牌授权书"
+          "message": "缺少必要资质: 品牌授权书",
+          "detail": {
+            "required": [
+              "企业营业执照",
+              "品牌授权书"
+            ],
+            "actual": [
+              "企业营业执照"
+            ],
+            "missing": [
+              "品牌授权书"
+            ]
+          }
         },
         {
-          "check": "product_count",
           "code": "P001",
           "level": "error",
-          "message": "商品数量不足: 2 < 3"
+          "message": "商品数量不足: 2 < 3",
+          "detail": {
+            "actual": 2,
+            "required_min": 3
+          }
         },
         {
-          "check": "image",
           "code": "IMG001",
           "level": "error",
-          "message": "商品 [防晒霜SPF50] 缺失图片: 详情图"
+          "message": "商品 [防晒霜SPF50] 缺失图片: 详情图",
+          "detail": {
+            "sku": "SKU-002-1",
+            "required": [
+              "主图",
+              "详情图"
+            ],
+            "actual": [
+              "主图"
+            ],
+            "missing": [
+              "详情图"
+            ]
+          }
+        },
+        {
+          "code": "R002",
+          "level": "warn",
+          "message": "关注类目: 美妆护肤，需要加强关注",
+          "detail": {
+            "category": "美妆护肤",
+            "risk_level": "watch"
+          }
         }
       ],
+      "collisions": [],
       "suggestions": [
         "请尽快上传缺失的资质文件: 品牌授权书，否则无法通过审核",
         "当前商品数 2，需至少上架 3 件商品参与活动",
         "请补充缺失图片: 详情图，确保商品展示完整",
         "美妆护肤 为关注类目，建议准备相关合规证明以备查验"
+      ],
+      "fail_reasons": [
+        {
+          "check": "qualification",
+          "codes": [
+            "Q001"
+          ],
+          "message": "缺少必要资质: 品牌授权书"
+        },
+        {
+          "check": "product_count",
+          "codes": [
+            "P001"
+          ],
+          "message": "商品数量不足: 2 < 3"
+        },
+        {
+          "check": "image",
+          "codes": [
+            "IMG001"
+          ],
+          "message": "商品 [防晒霜SPF50] 缺失图片: 详情图"
+        }
       ]
     },
     {
@@ -98,72 +199,140 @@
       "product_count": 4,
       "issues": [
         {
-          "check": "qualification",
           "code": "Q001",
           "level": "error",
-          "message": "缺少必要资质: 企业营业执照、品牌授权书"
+          "message": "缺少必要资质: 企业营业执照、品牌授权书",
+          "detail": {
+            "required": [
+              "企业营业执照",
+              "品牌授权书"
+            ],
+            "actual": [],
+            "missing": [
+              "企业营业执照",
+              "品牌授权书"
+            ]
+          }
         },
         {
-          "check": "qualification",
           "code": "Q002",
           "level": "error",
-          "message": "信用分不达标: 72 < 80"
+          "message": "信用分不达标: 72 < 80",
+          "detail": {
+            "actual": 72,
+            "required": 80
+          }
         },
         {
-          "check": "qualification",
           "code": "Q003",
           "level": "error",
-          "message": "未完成实名认证"
+          "message": "未完成实名认证",
+          "detail": {
+            "real_name_verified": false
+          }
         },
         {
-          "check": "price",
           "code": "PR003",
           "level": "warn",
-          "message": "商品 [鱼油软胶囊] 折扣力度不足: 0.0% < 5%"
+          "message": "商品 [鱼油软胶囊] 折扣力度不足: 0.0% < 5%",
+          "detail": {
+            "sku": "SKU-003-1",
+            "discount": "0.0",
+            "required_min": 5
+          }
         },
         {
-          "check": "price",
           "code": "PR001",
           "level": "error",
-          "message": "商品 [维生素C片] 价格低于最低限价: 5 < 9.9"
+          "message": "商品 [维生素C片] 价格低于最低限价: 5 < 9.9",
+          "detail": {
+            "sku": "SKU-003-2",
+            "actual": 5,
+            "min": 9.9
+          }
         },
         {
-          "check": "price",
           "code": "PR002",
           "level": "error",
-          "message": "商品 [褪黑素] 价格高于最高限价: 15000 > 9999.99"
+          "message": "商品 [褪黑素] 价格高于最高限价: 15000 > 9999.99",
+          "detail": {
+            "sku": "SKU-003-4",
+            "actual": 15000,
+            "max": 9999.99
+          }
         },
         {
-          "check": "image",
           "code": "IMG001",
           "level": "error",
-          "message": "商品 [鱼油软胶囊] 缺失图片: 详情图"
+          "message": "商品 [鱼油软胶囊] 缺失图片: 详情图",
+          "detail": {
+            "sku": "SKU-003-1",
+            "required": [
+              "主图",
+              "详情图"
+            ],
+            "actual": [
+              "主图"
+            ],
+            "missing": [
+              "详情图"
+            ]
+          }
         },
         {
-          "check": "image",
           "code": "IMG001",
           "level": "error",
-          "message": "商品 [维生素C片] 缺失图片: 主图、详情图"
+          "message": "商品 [维生素C片] 缺失图片: 主图、详情图",
+          "detail": {
+            "sku": "SKU-003-2",
+            "required": [
+              "主图",
+              "详情图"
+            ],
+            "actual": [],
+            "missing": [
+              "主图",
+              "详情图"
+            ]
+          }
         },
         {
-          "check": "image",
           "code": "IMG002",
           "level": "error",
-          "message": "商品 [维生素C片] 完全没有图片"
+          "message": "商品 [维生素C片] 完全没有图片",
+          "detail": {
+            "sku": "SKU-003-2"
+          }
         },
         {
-          "check": "image",
           "code": "IMG001",
           "level": "error",
-          "message": "商品 [褪黑素] 缺失图片: 详情图"
+          "message": "商品 [褪黑素] 缺失图片: 详情图",
+          "detail": {
+            "sku": "SKU-003-4",
+            "required": [
+              "主图",
+              "详情图"
+            ],
+            "actual": [
+              "主图"
+            ],
+            "missing": [
+              "详情图"
+            ]
+          }
         },
         {
-          "check": "risk",
           "code": "R001",
           "level": "error",
-          "message": "高风险类目: 保健食品，需要额外审核和资质证明"
+          "message": "高风险类目: 保健食品，需要额外审核和资质证明",
+          "detail": {
+            "category": "保健食品",
+            "risk_level": "high"
+          }
         }
       ],
+      "collisions": [],
       "suggestions": [
         "请尽快上传缺失的资质文件: 企业营业执照、品牌授权书，否则无法通过审核",
         "信用分当前 72，需提升至 80 以上，建议改善店铺经营数据",
@@ -176,25 +345,97 @@
         "商品没有任何图片，请上传至少主图和详情图",
         "请补充缺失图片: 详情图，确保商品展示完整",
         "保健食品 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核"
+      ],
+      "fail_reasons": [
+        {
+          "check": "qualification",
+          "codes": [
+            "Q001",
+            "Q002",
+            "Q003"
+          ],
+          "message": "缺少必要资质: 企业营业执照、品牌授权书"
+        },
+        {
+          "check": "price",
+          "codes": [
+            "PR003",
+            "PR001",
+            "PR002"
+          ],
+          "message": "商品 [鱼油软胶囊] 折扣力度不足: 0.0% < 5%"
+        },
+        {
+          "check": "image",
+          "codes": [
+            "IMG001",
+            "IMG002"
+          ],
+          "message": "商品 [鱼油软胶囊] 缺失图片: 详情图"
+        }
       ]
     },
     {
-      "shop_id": "SHOP-004",
-      "shop_name": "母婴优选商城",
-      "category": "婴幼儿奶粉",
+      "shop_id": "SHOP-005",
+      "shop_name": "鑫达数码旗舰店",
+      "category": "数码配件",
       "shop_type": "旗舰店",
-      "credit_score": 88,
+      "credit_score": 92,
       "product_count": 3,
       "issues": [
         {
-          "check": "risk",
-          "code": "R001",
+          "code": "D002",
           "level": "error",
-          "message": "高风险类目: 婴幼儿奶粉，需要额外审核和资质证明"
+          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-001] 鑫达数码旗舰店 撞名，需要核实",
+          "detail": {
+            "strategy": "shop_name_activity_id",
+            "score": 0.95,
+            "evidence": [
+              "店铺名称完全一致: \"鑫达数码旗舰店\"",
+              "活动ID完全一致: ACT-2026-0618",
+              "店铺ID不同: SHOP-005 vs SHOP-001，可能是同一主体重复开店或录入重复"
+            ],
+            "collide_with": {
+              "shop_id": "SHOP-001",
+              "shop_name": "鑫达数码旗舰店",
+              "activity_id": "ACT-2026-0618"
+            },
+            "current": {
+              "shop_id": "SHOP-005",
+              "shop_name": "鑫达数码旗舰店",
+              "activity_id": "ACT-2026-0618"
+            }
+          }
+        }
+      ],
+      "collisions": [
+        {
+          "code": "D002",
+          "strategy": "shop_name_activity_id",
+          "score": 0.95,
+          "collide_with": {
+            "shop_id": "SHOP-001",
+            "shop_name": "鑫达数码旗舰店",
+            "activity_id": "ACT-2026-0618"
+          },
+          "evidence": [
+            "店铺名称完全一致: \"鑫达数码旗舰店\"",
+            "活动ID完全一致: ACT-2026-0618",
+            "店铺ID不同: SHOP-005 vs SHOP-001，可能是同一主体重复开店或录入重复"
+          ]
         }
       ],
       "suggestions": [
-        "婴幼儿奶粉 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核"
+        "店铺名 [鑫达数码旗舰店] 与 [SHOP-001] 鑫达数码旗舰店 撞名，高度疑似重复报名，请人工核实是否为同一主体"
+      ],
+      "fail_reasons": [
+        {
+          "check": "duplicate",
+          "codes": [
+            "D002"
+          ],
+          "message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-001] 鑫达数码旗舰店 撞名，需要核实"
+        }
       ]
     },
     {
@@ -206,35 +447,89 @@
       "product_count": 1,
       "issues": [
         {
-          "check": "qualification",
           "code": "Q001",
           "level": "error",
-          "message": "缺少必要资质: 品牌授权书"
+          "message": "缺少必要资质: 品牌授权书",
+          "detail": {
+            "required": [
+              "企业营业执照",
+              "品牌授权书"
+            ],
+            "actual": [
+              "企业营业执照"
+            ],
+            "missing": [
+              "品牌授权书"
+            ]
+          }
         },
         {
-          "check": "qualification",
           "code": "Q002",
           "level": "error",
-          "message": "信用分不达标: 78 < 80"
+          "message": "信用分不达标: 78 < 80",
+          "detail": {
+            "actual": 78,
+            "required": 80
+          }
         },
         {
-          "check": "product_count",
           "code": "P001",
           "level": "error",
-          "message": "商品数量不足: 1 < 3"
+          "message": "商品数量不足: 1 < 3",
+          "detail": {
+            "actual": 1,
+            "required_min": 3
+          }
         },
         {
-          "check": "image",
           "code": "IMG001",
           "level": "error",
-          "message": "商品 [跑步鞋] 缺失图片: 详情图"
+          "message": "商品 [跑步鞋] 缺失图片: 详情图",
+          "detail": {
+            "sku": "SKU-007-1",
+            "required": [
+              "主图",
+              "详情图"
+            ],
+            "actual": [
+              "主图"
+            ],
+            "missing": [
+              "详情图"
+            ]
+          }
         }
       ],
+      "collisions": [],
       "suggestions": [
         "请尽快上传缺失的资质文件: 品牌授权书，否则无法通过审核",
         "信用分当前 78，需提升至 80 以上，建议改善店铺经营数据",
         "当前商品数 1，需至少上架 3 件商品参与活动",
         "请补充缺失图片: 详情图，确保商品展示完整"
+      ],
+      "fail_reasons": [
+        {
+          "check": "qualification",
+          "codes": [
+            "Q001",
+            "Q002"
+          ],
+          "message": "缺少必要资质: 品牌授权书"
+        },
+        {
+          "check": "product_count",
+          "codes": [
+            "P001"
+          ],
+          "message": "商品数量不足: 1 < 3"
+        },
+        {
+          "check": "image",
+          "codes": [
+            "IMG001"
+          ],
+          "message": "商品 [跑步鞋] 缺失图片: 详情图"
+        }
       ]
     },
     {
@@ -246,60 +541,111 @@
       "product_count": 2,
       "issues": [
         {
-          "check": "qualification",
           "code": "Q001",
           "level": "error",
-          "message": "缺少必要资质: 企业营业执照、品牌授权书"
+          "message": "缺少必要资质: 企业营业执照、品牌授权书",
+          "detail": {
+            "required": [
+              "企业营业执照",
+              "品牌授权书"
+            ],
+            "actual": [],
+            "missing": [
+              "企业营业执照",
+              "品牌授权书"
+            ]
+          }
         },
         {
-          "check": "qualification",
           "code": "Q002",
           "level": "error",
-          "message": "信用分不达标: 60 < 80"
+          "message": "信用分不达标: 60 < 80",
+          "detail": {
+            "actual": 60,
+            "required": 80
+          }
         },
         {
-          "check": "qualification",
           "code": "Q003",
           "level": "error",
-          "message": "未完成实名认证"
+          "message": "未完成实名认证",
+          "detail": {
+            "real_name_verified": false
+          }
         },
         {
-          "check": "product_count",
           "code": "P001",
           "level": "error",
-          "message": "商品数量不足: 2 < 3"
+          "message": "商品数量不足: 2 < 3",
+          "detail": {
+            "actual": 2,
+            "required_min": 3
+          }
         },
         {
-          "check": "price",
           "code": "PR001",
           "level": "error",
-          "message": "商品 [投资指南] 价格低于最低限价: 1 < 9.9"
+          "message": "商品 [投资指南] 价格低于最低限价: 1 < 9.9",
+          "detail": {
+            "sku": "SKU-008-2",
+            "actual": 1,
+            "min": 9.9
+          }
         },
         {
-          "check": "image",
           "code": "IMG001",
           "level": "error",
-          "message": "商品 [理财课程] 缺失图片: 详情图"
+          "message": "商品 [理财课程] 缺失图片: 详情图",
+          "detail": {
+            "sku": "SKU-008-1",
+            "required": [
+              "主图",
+              "详情图"
+            ],
+            "actual": [
+              "主图"
+            ],
+            "missing": [
+              "详情图"
+            ]
+          }
         },
         {
-          "check": "image",
           "code": "IMG001",
           "level": "error",
-          "message": "商品 [投资指南] 缺失图片: 主图、详情图"
+          "message": "商品 [投资指南] 缺失图片: 主图、详情图",
+          "detail": {
+            "sku": "SKU-008-2",
+            "required": [
+              "主图",
+              "详情图"
+            ],
+            "actual": [],
+            "missing": [
+              "主图",
+              "详情图"
+            ]
+          }
         },
         {
-          "check": "image",
           "code": "IMG002",
           "level": "error",
-          "message": "商品 [投资指南] 完全没有图片"
+          "message": "商品 [投资指南] 完全没有图片",
+          "detail": {
+            "sku": "SKU-008-2"
+          }
         },
         {
-          "check": "risk",
           "code": "R001",
           "level": "error",
-          "message": "高风险类目: 金融理财，需要额外审核和资质证明"
+          "message": "高风险类目: 金融理财，需要额外审核和资质证明",
+          "detail": {
+            "category": "金融理财",
+            "risk_level": "high"
+          }
         }
       ],
+      "collisions": [],
       "suggestions": [
         "请尽快上传缺失的资质文件: 企业营业执照、品牌授权书，否则无法通过审核",
         "信用分当前 60，需提升至 80 以上，建议改善店铺经营数据",
@@ -310,6 +656,107 @@
         "请补充缺失图片: 主图、详情图，确保商品展示完整",
         "商品没有任何图片，请上传至少主图和详情图",
         "金融理财 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核"
+      ],
+      "fail_reasons": [
+        {
+          "check": "qualification",
+          "codes": [
+            "Q001",
+            "Q002",
+            "Q003"
+          ],
+          "message": "缺少必要资质: 企业营业执照、品牌授权书"
+        },
+        {
+          "check": "product_count",
+          "codes": [
+            "P001"
+          ],
+          "message": "商品数量不足: 2 < 3"
+        },
+        {
+          "check": "price",
+          "codes": [
+            "PR001"
+          ],
+          "message": "商品 [投资指南] 价格低于最低限价: 1 < 9.9"
+        },
+        {
+          "check": "image",
+          "codes": [
+            "IMG001",
+            "IMG002"
+          ],
+          "message": "商品 [理财课程] 缺失图片: 详情图"
+        }
+      ]
+    }
+  ],
+  "review_list": [
+    {
+      "shop_id": "SHOP-004",
+      "shop_name": "母婴优选商城",
+      "category": "婴幼儿奶粉",
+      "shop_type": "旗舰店",
+      "credit_score": 88,
+      "product_count": 3,
+      "issues": [
+        {
+          "code": "R001",
+          "level": "error",
+          "message": "高风险类目: 婴幼儿奶粉，需要额外审核和资质证明",
+          "detail": {
+            "category": "婴幼儿奶粉",
+            "risk_level": "high"
+          }
+        }
+      ],
+      "collisions": [],
+      "suggestions": [
+        "婴幼儿奶粉 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核"
+      ],
+      "review_reasons": [
+        {
+          "check": "risk",
+          "codes": [
+            "R001"
+          ],
+          "message": "高风险类目: 婴幼儿奶粉，需要额外审核和资质证明",
+          "risk_level": "high"
+        }
+      ]
+    },
+    {
+      "shop_id": "SHOP-009",
+      "shop_name": "宠物乐园",
+      "category": "宠物药品",
+      "shop_type": "专营店",
+      "credit_score": 82,
+      "product_count": 3,
+      "issues": [
+        {
+          "code": "R002",
+          "level": "warn",
+          "message": "关注类目: 宠物药品，需要加强关注",
+          "detail": {
+            "category": "宠物药品",
+            "risk_level": "watch"
+          }
+        }
+      ],
+      "collisions": [],
+      "suggestions": [
+        "宠物药品 为关注类目，建议准备相关合规证明以备查验"
+      ],
+      "review_reasons": [
+        {
+          "check": "risk",
+          "codes": [
+            "R002"
+          ],
+          "message": "关注类目: 宠物药品，需要加强关注",
+          "risk_level": "watch"
+        }
       ]
     }
   ],
@@ -613,7 +1060,27 @@
       "issue_message": "关注类目: 宠物药品，需要加强关注",
       "suggestion": "宠物药品 为关注类目，建议准备相关合规证明以备查验",
       "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-001",
+      "shop_name": "鑫达数码旗舰店",
+      "check": "duplicate",
+      "code": "D002",
+      "level": "error",
+      "issue_message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-005] 鑫达数码旗舰店 撞名，需要核实",
+      "suggestion": "店铺名 [鑫达数码旗舰店] 与 [SHOP-005] 鑫达数码旗舰店 撞名，高度疑似重复报名，请人工核实是否为同一主体",
+      "auto_fixable": false
+    },
+    {
+      "shop_id": "SHOP-005",
+      "shop_name": "鑫达数码旗舰店",
+      "check": "duplicate",
+      "code": "D002",
+      "level": "error",
+      "issue_message": "高度疑似重复: 店铺名 [鑫达数码旗舰店] 在同一活动重复报名，与 [SHOP-001] 鑫达数码旗舰店 撞名，需要核实",
+      "suggestion": "店铺名 [鑫达数码旗舰店] 与 [SHOP-001] 鑫达数码旗舰店 撞名，高度疑似重复报名，请人工核实是否为同一主体",
+      "auto_fixable": false
     }
   ],
-  "remark_filled_count": 6
+  "remark_filled_count": 8
 }

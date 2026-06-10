@@ -1,94 +1,82 @@
-const { loadConfig, loadMerchants } = require("../utils/file");
-const { runCheck } = require("./check");
+const { initEnvironment, loadFilteredMerchants } = require("../utils/environment");
+const { runAllChecks, STATUS_PASS, STATUS_FAIL, STATUS_REVIEW } = require("../core/workflow");
 const { generateSuggestions } = require("../core/suggestion");
 const { fillRemarks } = require("../core/remark");
-const Logger = require("../utils/logger");
+const { statusIcon, statusText, pad } = require("./check");
 
 function runPreview(options) {
-  const config = loadConfig(options.config);
-  const merchants = loadMerchants(options.data);
-  const logger = new Logger(config.output?.log_dir);
+  const { config, activityId, logger } = initEnvironment(options);
+  const { filtered } = loadFilteredMerchants(options.data, activityId);
+  const rules = config.rules || {};
 
   logger.info("开始预览（不写入文件）");
+  const pipeline = runAllChecks(filtered, rules, null);
+  const suggestions = generateSuggestions(pipeline.results);
+  const { merchants: updatedMerchants, filledCount } = fillRemarks(filtered, pipeline.results);
 
-  const checkResult = runCheck({ ...options, output: null });
-  const suggestions = generateSuggestions(checkResult.results);
-  const { merchants: updatedMerchants, filledCount } = fillRemarks(merchants, checkResult.results);
+  console.log("\n╔══════════════════════════════════════════════════════════════════╗");
+  console.log("║                   预览模式 - 不会写入文件                        ║");
+  console.log("╠══════════════════════════════════════════════════════════════════╣");
+  console.log(`║  活动: ${padEnd(config.activity?.name || "-", 40)}ID: ${padEnd(activityId || "-", 18)}║`);
+  console.log("╚══════════════════════════════════════════════════════════════════╝\n");
 
-  const shopResults = new Map();
-  for (const m of merchants) {
-    shopResults.set(m.shop_id, {
-      shop_id: m.shop_id,
-      shop_name: m.shop_name,
-      category: m.category,
-      products: m.products?.length || 0,
-      checks: { passed: 0, failed: 0 },
-      issues: [],
-      suggestion_count: 0,
-      will_pass: true,
-    });
-  }
-
-  for (const r of checkResult.results) {
-    const entry = shopResults.get(r.shop_id);
-    if (!entry) continue;
-    if (r.passed) {
-      entry.checks.passed++;
-    } else {
-      entry.checks.failed++;
-      entry.will_pass = false;
-      entry.issues.push(...(r.issues || []));
-    }
-  }
-
+  const counts = { [STATUS_PASS]: 0, [STATUS_FAIL]: 0, [STATUS_REVIEW]: 0 };
+  const sugByShop = new Map();
   for (const s of suggestions) {
-    const entry = shopResults.get(s.shop_id);
-    if (entry) entry.suggestion_count++;
+    sugByShop.set(s.shop_id, (sugByShop.get(s.shop_id) || 0) + 1);
   }
 
-  console.log("\n╔════════════════════════════════════════════════════════════════╗");
-  console.log("║                    预览模式 - 不会写入文件                    ║");
-  console.log("╚════════════════════════════════════════════════════════════════╝\n");
+  for (const shop of pipeline.shopStatuses) {
+    counts[shop.status]++;
+    const icon = statusIcon(shop.status);
+    const sugCnt = sugByShop.get(shop.shop_id) || 0;
 
-  let passCount = 0;
-  let failCount = 0;
+    console.log(`${icon} [${shop.shop_id}] ${shop.shop_name} (${shop.category}) — ${statusText(shop.status)}`);
+    console.log(`   商品数: ${shop.product_count}  信用分: ${shop.credit_score}  建议数: ${sugCnt}条`);
 
-  for (const [shopId, info] of shopResults) {
-    const icon = info.will_pass ? "✅" : "❌";
-    if (info.will_pass) passCount++;
-    else failCount++;
-
-    console.log(`${icon} [${shopId}] ${info.shop_name} (${info.category}) - ${info.products}件商品`);
-    console.log(`   检查: ${info.checks.passed}通过 / ${info.checks.failed}未通过 | 建议: ${info.suggestion_count}条`);
-
-    if (info.issues.length > 0) {
-      for (const issue of info.issues.slice(0, 3)) {
-        const tag = issue.level === "error" ? "✖" : "⚠";
-        console.log(`   ${tag} ${issue.message}`);
+    const issues = shop.issues || [];
+    if (issues.length > 0) {
+      for (const issue of issues.slice(0, 3)) {
+        const t = issue.level === "error" ? "✖" : "⚠";
+        console.log(`   ${t} [${issue.code}] ${issue.message}`);
       }
-      if (info.issues.length > 3) {
-        console.log(`   ... 还有 ${info.issues.length - 3} 条问题`);
+      if (issues.length > 3) {
+        console.log(`   ... 还有 ${issues.length - 3} 条问题`);
       }
     }
 
-    const m = updatedMerchants.find((u) => u.shop_id === shopId);
+    if (shop.collides_with && shop.collides_with.length > 0) {
+      for (const c of shop.collides_with) {
+        console.log(`   💥 撞上: [${c.collide_with.shop_id}] ${c.collide_with.shop_name} (${c.strategy}/${(c.score*100).toFixed(0)}%)`);
+      }
+    }
+
+    const m = updatedMerchants.find((u) => u.shop_id === shop.shop_id);
     if (m && m.remark) {
       console.log(`   备注: ${m.remark}`);
     }
     console.log("");
   }
 
-  console.log("─────────────────────────────────────────────────");
-  console.log(`预览汇总: 通过 ${passCount} 家 / 未通过 ${failCount} 家 / 共 ${merchants.length} 家`);
-  console.log(`修改建议: ${suggestions.length} 条 | 补全备注: ${filledCount} 家`);
-  console.log("─────────────────────────────────────────────────\n");
-  console.log("提示: 运行 check 命令查看详细检查结果");
-  console.log("      运行 fix 命令执行修正并保存");
-  console.log("      运行 report 命令生成完整报告\n");
+  const total = filtered.length;
+  console.log("──────────────────────────────────────────────────────────────");
+  console.log(`  审核汇总: ✅通过 ${counts[STATUS_PASS]}家  ❌未通 ${counts[STATUS_FAIL]}家  🔍复核 ${counts[STATUS_REVIEW]}家  / 共 ${total}家`);
+  console.log(`  修改建议: ${suggestions.length}条  |  补全备注: ${filledCount}家`);
+  console.log("──────────────────────────────────────────────────────────────\n");
+  console.log("提示: check    详细单项检查 + JSON结果");
+  console.log("      fix      生成建议 + 备注补全 + 保存修正");
+  console.log("      report   通过/失败/复核三份名单 + 完整报告\n");
 
-  logger.info("预览完成");
+  logger.info("预览完成", { counts, suggestions: suggestions.length, filled: filledCount });
 
-  return { passCount, failCount, suggestions, updatedMerchants };
+  return {
+    counts,
+    suggestions,
+    updatedMerchants,
+    shopStatuses: pipeline.shopStatuses,
+  };
 }
+
+function padEnd(s, len) { return String(s).padEnd(len); }
 
 module.exports = { runPreview };

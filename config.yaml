@@ -52,7 +52,12 @@ rules:
     check_fields:
       - "shop_id"
       - "activity_id"
+    product_similarity_threshold: 0.7
     allow_same_shop_different_activity: true
+    strategies:
+      - "shop_id_activity_id"
+      - "shop_name_activity_id"
+      - "product_similarity"
 
 output:
   report_dir: "./reports"

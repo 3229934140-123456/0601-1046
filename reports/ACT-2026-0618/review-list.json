@@ -1,0 +1,77 @@
+{
+  "activity": {
+    "id": "ACT-2026-0618",
+    "name": "618大促活动"
+  },
+  "generated_at": "2026-06-10T19:03:18.238Z",
+  "kind": "review",
+  "count": 2,
+  "list": [
+    {
+      "shop_id": "SHOP-004",
+      "shop_name": "母婴优选商城",
+      "category": "婴幼儿奶粉",
+      "shop_type": "旗舰店",
+      "credit_score": 88,
+      "product_count": 3,
+      "issues": [
+        {
+          "code": "R001",
+          "level": "error",
+          "message": "高风险类目: 婴幼儿奶粉，需要额外审核和资质证明",
+          "detail": {
+            "category": "婴幼儿奶粉",
+            "risk_level": "high"
+          }
+        }
+      ],
+      "collisions": [],
+      "suggestions": [
+        "婴幼儿奶粉 为高风险类目，需提交额外资质证明（如特殊行业许可证），并接受人工复核"
+      ],
+      "review_reasons": [
+        {
+          "check": "risk",
+          "codes": [
+            "R001"
+          ],
+          "message": "高风险类目: 婴幼儿奶粉，需要额外审核和资质证明",
+          "risk_level": "high"
+        }
+      ]
+    },
+    {
+      "shop_id": "SHOP-009",
+      "shop_name": "宠物乐园",
+      "category": "宠物药品",
+      "shop_type": "专营店",
+      "credit_score": 82,
+      "product_count": 3,
+      "issues": [
+        {
+          "code": "R002",
+          "level": "warn",
+          "message": "关注类目: 宠物药品，需要加强关注",
+          "detail": {
+            "category": "宠物药品",
+            "risk_level": "watch"
+          }
+        }
+      ],
+      "collisions": [],
+      "suggestions": [
+        "宠物药品 为关注类目，建议准备相关合规证明以备查验"
+      ],
+      "review_reasons": [
+        {
+          "check": "risk",
+          "codes": [
+            "R002"
+          ],
+          "message": "关注类目: 宠物药品，需要加强关注",
+          "risk_level": "watch"
+        }
+      ]
+    }
+  ]
+}
