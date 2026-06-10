@@ -74,7 +74,7 @@ function printCheckSummary(summary) {
 
   for (const rec of summary.recordStatuses) {
     const icon = statusIcon(rec.status);
-    console.log(`${icon} [${rec.shop_id}] ${rec.shop_name} (${rec.activity_id}) — ${statusText(rec.status)}`);
+    console.log(`${icon} ${rec.record_id} [${rec.shop_id}] ${rec.shop_name} (${rec.activity_id}) — ${statusText(rec.status)}`);
 
     for (const [checkName, passed] of Object.entries(rec.checks || {})) {
       const m = passed ? "  ✅" : "  ❌";

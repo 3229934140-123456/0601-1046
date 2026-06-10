@@ -5,7 +5,7 @@
     "start_date": "2026-06-18",
     "end_date": "2026-06-20"
   },
-  "timestamp": "2026-06-10T19:13:31.418Z",
+  "timestamp": "2026-06-10T19:19:40.521Z",
   "check_statistics": {
     "total": 60,
     "passed": 42,
@@ -949,6 +949,7 @@
   "recordStatuses": [
     {
       "_idx": 0,
+      "record_id": "ACT-2026-0618-REC-001",
       "shop_id": "SHOP-001",
       "shop_name": "鑫达数码旗舰店",
       "activity_id": "ACT-2026-0618",
@@ -1047,6 +1048,7 @@
     },
     {
       "_idx": 1,
+      "record_id": "ACT-2026-0618-REC-002",
       "shop_id": "SHOP-002",
       "shop_name": "美丽容颜美妆店",
       "activity_id": "ACT-2026-0618",
@@ -1160,6 +1162,7 @@
     },
     {
       "_idx": 2,
+      "record_id": "ACT-2026-0618-REC-003",
       "shop_id": "SHOP-003",
       "shop_name": "健康之源保健品店",
       "activity_id": "ACT-2026-0618",
@@ -1358,6 +1361,7 @@
     },
     {
       "_idx": 3,
+      "record_id": "ACT-2026-0618-REC-004",
       "shop_id": "SHOP-004",
       "shop_name": "母婴优选商城",
       "activity_id": "ACT-2026-0618",
@@ -1405,6 +1409,7 @@
     },
     {
       "_idx": 4,
+      "record_id": "ACT-2026-0618-REC-005",
       "shop_id": "SHOP-005",
       "shop_name": "鑫达数码旗舰店",
       "activity_id": "ACT-2026-0618",
@@ -1503,6 +1508,7 @@
     },
     {
       "_idx": 5,
+      "record_id": "ACT-2026-0618-REC-006",
       "shop_id": "SHOP-006",
       "shop_name": "家居生活馆",
       "activity_id": "ACT-2026-0618",
@@ -1528,6 +1534,7 @@
     },
     {
       "_idx": 6,
+      "record_id": "ACT-2026-0618-REC-007",
       "shop_id": "SHOP-007",
       "shop_name": "运动达人专营店",
       "activity_id": "ACT-2026-0618",
@@ -1630,6 +1637,7 @@
     },
     {
       "_idx": 7,
+      "record_id": "ACT-2026-0618-REC-008",
       "shop_id": "SHOP-008",
       "shop_name": "金融理财超市",
       "activity_id": "ACT-2026-0618",
@@ -1804,6 +1812,7 @@
     },
     {
       "_idx": 8,
+      "record_id": "ACT-2026-0618-REC-009",
       "shop_id": "SHOP-009",
       "shop_name": "宠物乐园",
       "activity_id": "ACT-2026-0618",
@@ -1851,6 +1860,7 @@
     },
     {
       "_idx": 9,
+      "record_id": "ACT-2026-0618-REC-010",
       "shop_id": "SHOP-010",
       "shop_name": "零食小站",
       "activity_id": "ACT-2026-0618",

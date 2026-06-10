@@ -1,14 +1,15 @@
 const { saveJson } = require("../utils/file");
 const { initEnvironment, loadFilteredMerchants } = require("../utils/environment");
-const { runAllChecks, STATUS_PASS, STATUS_FAIL, STATUS_REVIEW } = require("../core/workflow");
+const { runAllChecks, STATUS_PASS, STATUS_FAIL, STATUS_REVIEW, REVIEW_CATEGORY_HIGH_RISK, REVIEW_CATEGORY_WATCH, REVIEW_CATEGORY_WEAK_DUPLICATE } = require("../core/workflow");
 const { generateSuggestions } = require("../core/suggestion");
 const { fillRemarks } = require("../core/remark");
 const { createReviewTracker, getReviewStats, filterByCategory, filterByStatus, REVIEW_STATUS_PENDING, REVIEW_STATUS_CONFIRMED_PASS, REVIEW_STATUS_REJECTED } = require("../core/review-state");
-const { saveCSV } = require("../utils/csv-export");
+const { saveCSV, saveCategoryCSV } = require("../utils/csv-export");
 const { statusIcon, statusText, categoryLabel, pad, padEnd } = require("./check");
 
 function recordBase(rec) {
   return {
+    record_id: rec.record_id,
     shop_id: rec.shop_id,
     shop_name: rec.shop_name,
     activity_id: rec.activity_id,
@@ -28,6 +29,12 @@ function buildCollisions(rec) {
     evidence: c.evidence,
   }));
 }
+
+const CATEGORY_FILE_MAP = {
+  [REVIEW_CATEGORY_HIGH_RISK]: "review-high-risk",
+  [REVIEW_CATEGORY_WATCH]: "review-watch",
+  [REVIEW_CATEGORY_WEAK_DUPLICATE]: "review-weak-duplicate",
+};
 
 function runReport(options) {
   const { config, reportDir, activityId, activityName, logger } = initEnvironment(options);
@@ -85,6 +92,8 @@ function runReport(options) {
     logger.info(`从上次复核结果恢复: ${options.resume}`, { resumed: reviewTracker.length });
   }
 
+  const filterCategory = options.reviewCategory || null;
+
   const report = {
     activity: { ...(config.activity || {}), id: activityId, name: activityName },
     generated_at: new Date().toISOString(),
@@ -117,7 +126,32 @@ function runReport(options) {
   logger.info(`待复核名单已保存: ${reviewList.length} 条`);
 
   saveJson(`${reportDir}/review-tracker.json`, buildExport("review_tracker", activityId, activityName, reviewTracker));
-  logger.info(`复核追踪表已保存: ${reviewTracker.length} 条 (待认领:${reviewStats[REVIEW_STATUS_PENDING]} 已通过:${reviewStats[REVIEW_STATUS_CONFIRMED_PASS]} 已驳回:${reviewStats[REVIEW_STATUS_REJECTED]})`);
+  logger.info(`复核追踪表已保存: ${reviewTracker.length} 条`);
+
+  for (const [cat, filePrefix] of Object.entries(CATEGORY_FILE_MAP)) {
+    const items = filterByCategory(reviewTracker, cat);
+    if (items.length > 0) {
+      saveJson(`${reportDir}/${filePrefix}.json`, buildExport(cat, activityId, activityName, items));
+      saveCategoryCSV(`${reportDir}/${filePrefix}.csv`, items, cat, activityId);
+      logger.info(`分组导出 [${categoryLabel(cat)}]: ${items.length} 条 → ${filePrefix}.json + .csv`);
+    }
+  }
+
+  if (filterCategory) {
+    const filtered = filterByCategory(reviewTracker, filterCategory);
+    if (filtered.length === 0) {
+      console.log(`\n⚠️  分类 [${filterCategory}] 下没有待复核记录\n`);
+    } else {
+      console.log(`\n🔍 按 ${categoryLabel(filterCategory)} 过滤的结果 (${filtered.length} 条):\n`);
+      for (const item of filtered) {
+        console.log(`  ${statusIcon("review")} ${item.record_id} [${item.shop_id}] ${item.shop_name} — ${item.review_status}`);
+        for (const rr of item.review_reasons) {
+          console.log(`     📋 [${rr.category}] ${rr.message}`);
+        }
+        console.log("");
+      }
+    }
+  }
 
   saveJson(`${reportDir}/merchants-updated.json`, updatedMerchants);
   logger.info("更新后商家数据已保存");
@@ -126,7 +160,7 @@ function runReport(options) {
   logger.info(`修改建议已保存: ${suggestions.length} 条`);
 
   const csvPath = `${reportDir}/audit-summary.csv`;
-  saveCSV(csvPath, pipeline.recordStatuses, suggestions, activityId);
+  saveCSV(csvPath, pipeline.recordStatuses, suggestions, activityId, reviewTracker);
   logger.info(`CSV汇总表已保存: ${csvPath}`);
 
   const logPath = logger.exportLog(`${reportDir}/operation-log.json`);
@@ -158,11 +192,11 @@ function printReportSummary(report, reviewTracker, reviewStats) {
   console.log("╚══════════════════════════════════════════════════════════════════╝\n");
 
   printListSection("✅ 通过名单", report.pass_list, (p) => {
-    console.log(`  ✅ [${p.shop_id}] ${p.shop_name} (${p.category}) 信用${p.credit_score} ${p.product_count}件`);
+    console.log(`  ✅ ${p.record_id} [${p.shop_id}] ${p.shop_name} (${p.category})`);
   });
 
   printListSection("❌ 未通过名单及原因", report.fail_list, (f) => {
-    console.log(`  ❌ [${f.shop_id}] ${f.shop_name} (${f.activity_id})`);
+    console.log(`  ❌ ${f.record_id} [${f.shop_id}] ${f.shop_name} (${f.activity_id})`);
     for (const issue of f.issues) {
       const tag = issue.level === "error" ? "✖" : "⚠";
       console.log(`     ${tag} [${issue.code}] ${issue.message}`);
@@ -175,7 +209,7 @@ function printReportSummary(report, reviewTracker, reviewStats) {
   });
 
   printListSection("🔍 待人工复核名单 (可派单处理)", report.review_list, (r) => {
-    console.log(`  🔍 [${r.shop_id}] ${r.shop_name} (${r.activity_id})`);
+    console.log(`  🔍 ${r.record_id} [${r.shop_id}] ${r.shop_name} (${r.activity_id})`);
     console.log(`     🏷️  复核分类: ${(r.review_categories || []).map(categoryLabel).join(", ")}`);
     for (const rr of r.review_reasons || []) {
       console.log(`     📋 [${rr.category}] ${rr.message}`);
@@ -192,10 +226,12 @@ function printReportSummary(report, reviewTracker, reviewStats) {
   console.log(`  📌 待认领: ${reviewStats[REVIEW_STATUS_PENDING]}  ✅已确认通过: ${reviewStats[REVIEW_STATUS_CONFIRMED_PASS]}  ❌已驳回: ${reviewStats[REVIEW_STATUS_REJECTED]}`);
 
   const byCategory = {};
-  for (const cat of ["high_risk", "watch", "weak_duplicate"]) {
-    byCategory[cat] = filterByCategory(reviewTracker, cat).length;
+  for (const cat of [REVIEW_CATEGORY_HIGH_RISK, REVIEW_CATEGORY_WATCH, REVIEW_CATEGORY_WEAK_DUPLICATE]) {
+    const items = filterByCategory(reviewTracker, cat);
+    byCategory[cat] = items.length;
+    const pending = items.filter((i) => i.review_status === REVIEW_STATUS_PENDING).length;
+    console.log(`  ${categoryLabel(cat)}: ${items.length}条 (待认领: ${pending})`);
   }
-  console.log(`  按分类: 高风险=${byCategory.high_risk}  关注=${byCategory.watch}  弱重复=${byCategory.weak_duplicate}`);
 
   if (reviewTracker.length > 0) {
     const pending = filterByStatus(reviewTracker, REVIEW_STATUS_PENDING);
@@ -203,23 +239,29 @@ function printReportSummary(report, reviewTracker, reviewStats) {
       console.log(`\n  待认领取单:`);
       for (const item of pending) {
         const cats = item.review_categories.map(categoryLabel).join(",");
-        console.log(`    📌 [${item.shop_id}] ${item.shop_name} — ${cats} | 撞: ${(item.collides_with || []).map((c) => c.collide_with.shop_name).join(",") || "无"}`);
+        console.log(`    📌 ${item.record_id} [${item.shop_id}] ${item.shop_name} — ${cats}`);
       }
     }
   }
   console.log("");
 
   console.log("📄 已导出文件:");
-  console.log("  ├── full-report.json       (完整报告)");
-  console.log("  ├── pass-list.json         (通过名单)");
-  console.log("  ├── fail-reasons.json      (失败原因)");
-  console.log("  ├── review-list.json       (待复核名单)");
-  console.log("  ├── review-tracker.json    (复核追踪表，可反复加载)");
-  console.log("  ├── audit-summary.csv      (CSV汇总，Excel可直接打开)");
-  console.log("  ├── merchants-updated.json (更新后商家数据)");
-  console.log("  ├── suggestions.json       (修改建议)");
-  console.log("  ├── check-result.json      (检查明细)");
-  console.log("  └── operation-log.json     (操作日志)");
+  console.log("  ├── full-report.json         (完整报告)");
+  console.log("  ├── pass-list.json           (通过名单)");
+  console.log("  ├── fail-reasons.json        (失败原因)");
+  console.log("  ├── review-list.json         (待复核名单)");
+  console.log("  ├── review-tracker.json      (复核追踪表)");
+  console.log("  ├── review-high-risk.json    (高风险类目分组)");
+  console.log("  ├── review-high-risk.csv     (高风险类目CSV)");
+  console.log("  ├── review-watch.json        (关注类目分组)");
+  console.log("  ├── review-watch.csv         (关注类目CSV)");
+  console.log("  ├── review-weak-duplicate.json (弱重复证据分组)");
+  console.log("  ├── review-weak-duplicate.csv  (弱重复证据CSV)");
+  console.log("  ├── audit-summary.csv        (全量CSV汇总)");
+  console.log("  ├── merchants-updated.json   (更新后商家数据)");
+  console.log("  ├── suggestions.json         (修改建议)");
+  console.log("  ├── check-result.json        (检查明细)");
+  console.log("  └── operation-log.json       (操作日志)");
   console.log("");
 }
 

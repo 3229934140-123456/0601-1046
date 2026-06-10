@@ -33,7 +33,7 @@ function runPreview(options) {
     const sugKey = `${rec.shop_id}::${rec.shop_name}`;
     const sugCnt = sugByRecord.get(sugKey) || 0;
 
-    console.log(`${icon} [${rec.shop_id}] ${rec.shop_name} (${rec.activity_id}) — ${statusText(rec.status)}`);
+    console.log(`${icon} ${rec.record_id} [${rec.shop_id}] ${rec.shop_name} (${rec.activity_id}) — ${statusText(rec.status)}`);
     console.log(`   商品: ${rec.product_count}件  信用: ${rec.credit_score}  建议: ${sugCnt}条`);
 
     const issues = rec.issues || [];

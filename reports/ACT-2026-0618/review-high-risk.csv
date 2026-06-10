@@ -1,0 +1,2 @@
+﻿record_id,activity_id,shop_id,shop_name,category,review_categories,review_status,reviewed_by,reviewed_at,review_note,collision_target,collision_evidence
+ACT-2026-0618-REC-004,ACT-2026-0618,SHOP-004,母婴优选商城,婴幼儿奶粉,high_risk,confirmed_pass,张运营,2026-06-10T19:19:51.063Z,已提交特殊行业许可证,,

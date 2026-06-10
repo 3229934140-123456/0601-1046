@@ -8,7 +8,7 @@ function escapeCSV(val) {
   return s;
 }
 
-function generateCSV(recordStatuses, suggestions, activityId) {
+function generateCSV(recordStatuses, suggestions, activityId, reviewTracker) {
   const sugMap = new Map();
   for (const s of suggestions || []) {
     const k = `${s.shop_id}::${s.shop_name}`;
@@ -16,7 +16,14 @@ function generateCSV(recordStatuses, suggestions, activityId) {
     sugMap.get(k).push(s.suggestion);
   }
 
+  const reviewMap = new Map();
+  for (const r of reviewTracker || []) {
+    const rid = r.record_id;
+    if (rid) reviewMap.set(rid, r);
+  }
+
   const headers = [
+    "record_id",
     "activity_id",
     "shop_id",
     "shop_name",
@@ -31,6 +38,9 @@ function generateCSV(recordStatuses, suggestions, activityId) {
     "collision_strategy",
     "collision_score",
     "suggestions",
+    "review_status",
+    "reviewed_by",
+    "review_note",
   ];
 
   const rows = [headers.map(escapeCSV).join(",")];
@@ -51,7 +61,13 @@ function generateCSV(recordStatuses, suggestions, activityId) {
     const sugList = sugMap.get(sugKey) || [];
     const sugText = sugList.slice(0, 3).join("; ") + (sugList.length > 3 ? `...(+${sugList.length - 3})` : "");
 
+    const rv = reviewMap.get(rec.record_id) || {};
+    const reviewStatus = rv.review_status || (rec.status === "review" ? "pending_claim" : "");
+    const reviewedBy = rv.reviewed_by || "";
+    const reviewNote = rv.review_note || "";
+
     rows.push([
+      escapeCSV(rec.record_id || ""),
       escapeCSV(activityId || rec.activity_id || ""),
       escapeCSV(rec.shop_id),
       escapeCSV(rec.shop_name),
@@ -66,6 +82,9 @@ function generateCSV(recordStatuses, suggestions, activityId) {
       escapeCSV(collisionStrategy),
       escapeCSV(collisionScore),
       escapeCSV(sugText),
+      escapeCSV(reviewStatus),
+      escapeCSV(reviewedBy),
+      escapeCSV(reviewNote),
     ].join(","));
   }
 
@@ -83,11 +102,63 @@ function buildMainReason(rec) {
   return parts.join("; ") || "全部通过";
 }
 
-function saveCSV(filePath, recordStatuses, suggestions, activityId) {
-  const content = generateCSV(recordStatuses, suggestions, activityId);
+function saveCSV(filePath, recordStatuses, suggestions, activityId, reviewTracker) {
+  const content = generateCSV(recordStatuses, suggestions, activityId, reviewTracker);
   const bom = "\uFEFF";
   fs.writeFileSync(filePath, bom + content, "utf-8");
   return filePath;
 }
 
-module.exports = { generateCSV, saveCSV, escapeCSV };
+function generateCategoryCSV(trackerItems, category, activityId) {
+  const headers = [
+    "record_id",
+    "activity_id",
+    "shop_id",
+    "shop_name",
+    "category",
+    "review_categories",
+    "review_status",
+    "reviewed_by",
+    "reviewed_at",
+    "review_note",
+    "collision_target",
+    "collision_evidence",
+  ];
+
+  const rows = [headers.map(escapeCSV).join(",")];
+
+  for (const item of trackerItems) {
+    const collisionTarget = (item.collides_with || [])
+      .map((c) => `${c.collide_with.shop_id}:${c.collide_with.shop_name}`)
+      .join("; ");
+    const collisionEvidence = (item.collides_with || [])
+      .flatMap((c) => c.evidence || [])
+      .join("; ");
+
+    rows.push([
+      escapeCSV(item.record_id || ""),
+      escapeCSV(item.activity_id || activityId || ""),
+      escapeCSV(item.shop_id),
+      escapeCSV(item.shop_name),
+      escapeCSV(item.category),
+      escapeCSV((item.review_categories || []).join("; ")),
+      escapeCSV(item.review_status),
+      escapeCSV(item.reviewed_by || ""),
+      escapeCSV(item.reviewed_at || ""),
+      escapeCSV(item.review_note || ""),
+      escapeCSV(collisionTarget),
+      escapeCSV(collisionEvidence),
+    ].join(","));
+  }
+
+  return rows.join("\n");
+}
+
+function saveCategoryCSV(filePath, trackerItems, category, activityId) {
+  const content = generateCategoryCSV(trackerItems, category, activityId);
+  const bom = "\uFEFF";
+  fs.writeFileSync(filePath, bom + content, "utf-8");
+  return filePath;
+}
+
+module.exports = { generateCSV, saveCSV, escapeCSV, generateCategoryCSV, saveCategoryCSV };

@@ -5,7 +5,7 @@
     "start_date": "2026-06-18",
     "end_date": "2026-06-20"
   },
-  "generated_at": "2026-06-10T19:13:31.463Z",
+  "generated_at": "2026-06-10T19:20:57.120Z",
   "summary": {
     "total": 10,
     "passed": 2,
@@ -15,12 +15,13 @@
   },
   "review_tracker_stats": {
     "total": 2,
-    "pending_claim": 2,
-    "confirmed_pass": 0,
-    "rejected": 0
+    "pending_claim": 0,
+    "confirmed_pass": 1,
+    "rejected": 1
   },
   "pass_list": [
     {
+      "record_id": "ACT-2026-0618-REC-006",
       "shop_id": "SHOP-006",
       "shop_name": "家居生活馆",
       "activity_id": "ACT-2026-0618",
@@ -28,9 +29,10 @@
       "shop_type": "普通店",
       "credit_score": 90,
       "product_count": 3,
-      "verified_at": "2026-06-10T19:13:31.462Z"
+      "verified_at": "2026-06-10T19:20:57.119Z"
     },
     {
+      "record_id": "ACT-2026-0618-REC-010",
       "shop_id": "SHOP-010",
       "shop_name": "零食小站",
       "activity_id": "ACT-2026-0618",
@@ -38,11 +40,12 @@
       "shop_type": "普通店",
       "credit_score": 91,
       "product_count": 4,
-      "verified_at": "2026-06-10T19:13:31.462Z"
+      "verified_at": "2026-06-10T19:20:57.119Z"
     }
   ],
   "fail_list": [
     {
+      "record_id": "ACT-2026-0618-REC-001",
       "shop_id": "SHOP-001",
       "shop_name": "鑫达数码旗舰店",
       "activity_id": "ACT-2026-0618",
@@ -89,6 +92,7 @@
       "review_categories": []
     },
     {
+      "record_id": "ACT-2026-0618-REC-002",
       "shop_id": "SHOP-002",
       "shop_name": "美丽容颜美妆店",
       "activity_id": "ACT-2026-0618",
@@ -153,6 +157,7 @@
       ]
     },
     {
+      "record_id": "ACT-2026-0618-REC-003",
       "shop_id": "SHOP-003",
       "shop_name": "健康之源保健品店",
       "activity_id": "ACT-2026-0618",
@@ -264,6 +269,7 @@
       ]
     },
     {
+      "record_id": "ACT-2026-0618-REC-005",
       "shop_id": "SHOP-005",
       "shop_name": "鑫达数码旗舰店",
       "activity_id": "ACT-2026-0618",
@@ -310,6 +316,7 @@
       "review_categories": []
     },
     {
+      "record_id": "ACT-2026-0618-REC-007",
       "shop_id": "SHOP-007",
       "shop_name": "运动达人专营店",
       "activity_id": "ACT-2026-0618",
@@ -373,6 +380,7 @@
       "review_categories": []
     },
     {
+      "record_id": "ACT-2026-0618-REC-008",
       "shop_id": "SHOP-008",
       "shop_name": "金融理财超市",
       "activity_id": "ACT-2026-0618",
@@ -479,6 +487,7 @@
   ],
   "review_list": [
     {
+      "record_id": "ACT-2026-0618-REC-004",
       "shop_id": "SHOP-004",
       "shop_name": "母婴优选商城",
       "activity_id": "ACT-2026-0618",
@@ -513,6 +522,7 @@
       ]
     },
     {
+      "record_id": "ACT-2026-0618-REC-009",
       "shop_id": "SHOP-009",
       "shop_name": "宠物乐园",
       "activity_id": "ACT-2026-0618",
@@ -549,7 +559,7 @@
   ],
   "review_tracker": [
     {
-      "key": "ACT-2026-0618::SHOP-004::母婴优选商城",
+      "record_id": "ACT-2026-0618-REC-004",
       "shop_id": "SHOP-004",
       "shop_name": "母婴优选商城",
       "activity_id": "ACT-2026-0618",
@@ -579,13 +589,13 @@
           "message": "高风险类目: 婴幼儿奶粉，需要额外审核和资质证明"
         }
       ],
-      "review_status": "pending_claim",
-      "reviewed_by": null,
-      "reviewed_at": null,
-      "review_note": null
+      "review_status": "confirmed_pass",
+      "reviewed_by": "张运营",
+      "reviewed_at": "2026-06-10T19:19:51.063Z",
+      "review_note": "已提交特殊行业许可证"
     },
     {
-      "key": "ACT-2026-0618::SHOP-009::宠物乐园",
+      "record_id": "ACT-2026-0618-REC-009",
       "shop_id": "SHOP-009",
       "shop_name": "宠物乐园",
       "activity_id": "ACT-2026-0618",
@@ -615,10 +625,10 @@
           "message": "关注类目: 宠物药品，需要加强关注"
         }
       ],
-      "review_status": "pending_claim",
-      "reviewed_by": null,
-      "reviewed_at": null,
-      "review_note": null
+      "review_status": "rejected",
+      "reviewed_by": "李运营",
+      "reviewed_at": "2026-06-10T19:20:37.913Z",
+      "review_note": "无法提供兽药经营许可证"
     }
   ],
   "all_suggestions": [

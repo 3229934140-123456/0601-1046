@@ -12,11 +12,11 @@ function createReviewTracker(recordStatuses, previousState) {
   for (const rec of recordStatuses) {
     if (rec.status !== "review") continue;
 
-    const key = buildKey(rec);
-    const existing = prevState.get(key);
+    const recordId = rec.record_id;
+    const existing = prevState.get(recordId);
 
     items.push({
-      key,
+      record_id: recordId,
       shop_id: rec.shop_id,
       shop_name: rec.shop_name,
       activity_id: rec.activity_id,
@@ -42,10 +42,6 @@ function createReviewTracker(recordStatuses, previousState) {
   return items;
 }
 
-function buildKey(rec) {
-  return `${rec.activity_id}::${rec.shop_id}::${rec.shop_name}`;
-}
-
 function loadPreviousState(previousPath) {
   const map = new Map();
   if (!previousPath) return map;
@@ -58,7 +54,8 @@ function loadPreviousState(previousPath) {
     const list = data.list || data.items || data;
     if (!Array.isArray(list)) return map;
     for (const item of list) {
-      if (item.key) map.set(item.key, item);
+      const key = item.record_id || item.key;
+      if (key) map.set(key, item);
     }
   } catch {
     return map;
@@ -67,9 +64,13 @@ function loadPreviousState(previousPath) {
   return map;
 }
 
-function updateReviewStatus(tracker, key, newStatus, reviewedBy, note) {
-  const item = tracker.find((i) => i.key === key);
+function updateReviewStatus(tracker, identifier, newStatus, reviewedBy, note) {
+  let item = tracker.find((i) => i.record_id === identifier);
+  if (!item) {
+    item = tracker.find((i) => i.shop_id === identifier && i.activity_id);
+  }
   if (!item) return null;
+
   item.review_status = newStatus;
   item.reviewed_by = reviewedBy || "system";
   item.reviewed_at = new Date().toISOString();
@@ -98,6 +99,29 @@ function filterByStatus(tracker, status) {
   return tracker.filter((i) => i.review_status === status);
 }
 
+function loadTrackerFromPath(trackerPath) {
+  const resolved = path.resolve(trackerPath);
+  if (!fs.existsSync(resolved)) {
+    throw new Error(`复核追踪文件不存在: ${resolved}`);
+  }
+  const data = JSON.parse(fs.readFileSync(resolved, "utf-8"));
+  const list = data.list || data.items || data;
+  if (!Array.isArray(list)) throw new Error("复核追踪文件格式无效");
+  return list;
+}
+
+function saveTrackerToPath(trackerPath, tracker, activityId, activityName) {
+  const output = {
+    activity: { id: activityId, name: activityName },
+    updated_at: new Date().toISOString(),
+    kind: "review_tracker",
+    count: tracker.length,
+    list: tracker,
+  };
+  fs.writeFileSync(trackerPath, JSON.stringify(output, null, 2), "utf-8");
+  return trackerPath;
+}
+
 module.exports = {
   createReviewTracker,
   updateReviewStatus,
@@ -105,6 +129,8 @@ module.exports = {
   filterByCategory,
   filterByStatus,
   loadPreviousState,
+  loadTrackerFromPath,
+  saveTrackerToPath,
   REVIEW_STATUS_PENDING,
   REVIEW_STATUS_CONFIRMED_PASS,
   REVIEW_STATUS_REJECTED,

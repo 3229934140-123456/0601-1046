@@ -6,6 +6,7 @@ const { runCheck } = require("./commands/check");
 const { runFix } = require("./commands/fix");
 const { runPreview } = require("./commands/preview");
 const { runReport } = require("./commands/report");
+const { runReview } = require("./commands/review-cmd");
 
 const program = new Command();
 
@@ -72,11 +73,34 @@ program
   .option("-a, --activity-id <id>", "指定活动ID，覆盖配置中的默认活动ID")
   .option("--output-dir <dir>", "指定输出根目录，分活动目录产出报告和日志", "./")
   .option("--resume <path>", "从上次导出的 review-tracker.json 恢复复核进度，保留人工处理状态")
+  .option("--review-category <cat>", "只看某一复核分类 (high_risk / watch / weak_duplicate)")
   .action((opts) => {
     try {
       runReport(opts);
     } catch (err) {
       console.error("报告生成失败:", err.message);
+      process.exit(1);
+    }
+  });
+
+program
+  .command("review <action>")
+  .description("复核状态管理: update(更新) / list(列表) / show(详情)")
+  .option("-c, --config <path>", "配置文件路径", "./config.yaml")
+  .option("-a, --activity-id <id>", "指定活动ID")
+  .option("--output-dir <dir>", "指定输出根目录", "./")
+  .option("--tracker <path>", "指定 review-tracker.json 路径 (默认自动定位)")
+  .option("--identifier <id>", "记录编号 (record_id) 或店铺ID (shop_id)")
+  .option("--status <status>", "处理结论: confirmed_pass / rejected / pending_claim")
+  .option("--reviewer <name>", "处理人姓名")
+  .option("--note <text>", "处理备注")
+  .option("--category <cat>", "按分类过滤 (high_risk / watch / weak_duplicate)")
+  .action((action, opts) => {
+    opts.action = action;
+    try {
+      runReview(opts);
+    } catch (err) {
+      console.error("复核操作失败:", err.message);
       process.exit(1);
     }
   });

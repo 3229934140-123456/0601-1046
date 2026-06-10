@@ -15,6 +15,11 @@ const REVIEW_CATEGORY_WEAK_DUPLICATE = "weak_duplicate";
 
 const FAIL_CHECKS = ["qualification", "product_count", "price", "image"];
 
+function generateRecordId(activityId, index) {
+  const safeAct = (activityId || "UNK").replace(/[^a-zA-Z0-9_-]/g, "").slice(0, 16);
+  return `${safeAct}-REC-${String(index + 1).padStart(3, "0")}`;
+}
+
 function runAllChecks(merchants, rules, logger) {
   const allResults = [];
 
@@ -57,7 +62,8 @@ function runAllChecks(merchants, rules, logger) {
     }
   }
 
-  const recordStatuses = classifyByRecord(merchants, allResults);
+  const activityId = merchants[0]?.activity_id;
+  const recordStatuses = classifyByRecord(merchants, allResults, activityId);
 
   const checkStats = {
     total: allResults.length,
@@ -73,13 +79,14 @@ function runAllChecks(merchants, rules, logger) {
   };
 }
 
-function classifyByRecord(merchants, allResults) {
+function classifyByRecord(merchants, allResults, activityId) {
   const byRecord = new Map();
 
   for (let idx = 0; idx < merchants.length; idx++) {
     const m = merchants[idx];
     byRecord.set(idx, {
       _idx: idx,
+      record_id: generateRecordId(activityId, idx),
       shop_id: m.shop_id,
       shop_name: m.shop_name,
       activity_id: m.activity_id,
@@ -211,6 +218,7 @@ module.exports = {
   runAllChecks,
   classifyByRecord,
   classifyOneRecord,
+  generateRecordId,
   STATUS_PASS,
   STATUS_FAIL,
   STATUS_REVIEW,

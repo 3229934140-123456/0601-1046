@@ -1,0 +1,47 @@
+{
+  "activity": {
+    "id": "ACT-2026-0618",
+    "name": "618大促活动"
+  },
+  "generated_at": "2026-06-10T19:20:57.125Z",
+  "kind": "watch",
+  "count": 1,
+  "list": [
+    {
+      "record_id": "ACT-2026-0618-REC-009",
+      "shop_id": "SHOP-009",
+      "shop_name": "宠物乐园",
+      "activity_id": "ACT-2026-0618",
+      "category": "宠物药品",
+      "shop_type": "专营店",
+      "credit_score": 82,
+      "product_count": 3,
+      "review_categories": [
+        "watch"
+      ],
+      "review_reasons": [
+        {
+          "category": "watch",
+          "check": "risk",
+          "codes": [
+            "R002"
+          ],
+          "message": "关注类目: 宠物药品，需要加强关注",
+          "risk_level": "watch"
+        }
+      ],
+      "collides_with": [],
+      "issues": [
+        {
+          "code": "R002",
+          "level": "warn",
+          "message": "关注类目: 宠物药品，需要加强关注"
+        }
+      ],
+      "review_status": "rejected",
+      "reviewed_by": "李运营",
+      "reviewed_at": "2026-06-10T19:20:37.913Z",
+      "review_note": "无法提供兽药经营许可证"
+    }
+  ]
+}

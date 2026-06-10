@@ -3,11 +3,12 @@
     "id": "ACT-2026-0618",
     "name": "618大促活动"
   },
-  "generated_at": "2026-06-10T19:13:31.466Z",
+  "generated_at": "2026-06-10T19:20:57.122Z",
   "kind": "fail",
   "count": 6,
   "list": [
     {
+      "record_id": "ACT-2026-0618-REC-001",
       "shop_id": "SHOP-001",
       "shop_name": "鑫达数码旗舰店",
       "activity_id": "ACT-2026-0618",
@@ -54,6 +55,7 @@
       "review_categories": []
     },
     {
+      "record_id": "ACT-2026-0618-REC-002",
       "shop_id": "SHOP-002",
       "shop_name": "美丽容颜美妆店",
       "activity_id": "ACT-2026-0618",
@@ -118,6 +120,7 @@
       ]
     },
     {
+      "record_id": "ACT-2026-0618-REC-003",
       "shop_id": "SHOP-003",
       "shop_name": "健康之源保健品店",
       "activity_id": "ACT-2026-0618",
@@ -229,6 +232,7 @@
       ]
     },
     {
+      "record_id": "ACT-2026-0618-REC-005",
       "shop_id": "SHOP-005",
       "shop_name": "鑫达数码旗舰店",
       "activity_id": "ACT-2026-0618",
@@ -275,6 +279,7 @@
       "review_categories": []
     },
     {
+      "record_id": "ACT-2026-0618-REC-007",
       "shop_id": "SHOP-007",
       "shop_name": "运动达人专营店",
       "activity_id": "ACT-2026-0618",
@@ -338,6 +343,7 @@
       "review_categories": []
     },
     {
+      "record_id": "ACT-2026-0618-REC-008",
       "shop_id": "SHOP-008",
       "shop_name": "金融理财超市",
       "activity_id": "ACT-2026-0618",

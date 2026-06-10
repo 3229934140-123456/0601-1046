@@ -1,0 +1,2 @@
+﻿record_id,activity_id,shop_id,shop_name,category,review_categories,review_status,reviewed_by,reviewed_at,review_note,collision_target,collision_evidence
+ACT-2026-0618-REC-009,ACT-2026-0618,SHOP-009,宠物乐园,宠物药品,watch,rejected,李运营,2026-06-10T19:20:37.913Z,无法提供兽药经营许可证,,

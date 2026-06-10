@@ -3,11 +3,12 @@
     "id": "ACT-2026-0618",
     "name": "618大促活动"
   },
-  "generated_at": "2026-06-10T19:13:31.467Z",
+  "generated_at": "2026-06-10T19:20:57.122Z",
   "kind": "review",
   "count": 2,
   "list": [
     {
+      "record_id": "ACT-2026-0618-REC-004",
       "shop_id": "SHOP-004",
       "shop_name": "母婴优选商城",
       "activity_id": "ACT-2026-0618",
@@ -42,6 +43,7 @@
       ]
     },
     {
+      "record_id": "ACT-2026-0618-REC-009",
       "shop_id": "SHOP-009",
       "shop_name": "宠物乐园",
       "activity_id": "ACT-2026-0618",
